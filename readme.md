@@ -1,3 +1,6 @@
+<!-- default badges list -->
+[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+<!-- default badges end -->
 <a name="thetableofcontents"></a>
 - [How to update CSS styles to v22.2](#how-to-update-css-styles-to-v222)
 - [Most common customizations](#most-common-customizations)
