@@ -5,11 +5,25 @@
 - [How to update CSS styles to v22.2](#how-to-update-css-styles-to-v222)
 - [Most common customizations](#most-common-customizations)
   - [DxGrid](#dxgrid)
+    - [Focus an editor inside the edit form](#focus-an-editor-inside-the-edit-form)
+    - [Change selected row background color](#change-selected-row-background-color)
+    - [Hide the expand/collapse button for detail rows](#hide-the-expandcollapse-button-for-detail-rows)
+    - [Hide the skeleton element](#hide-the-skeleton-element)
+    - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
+    - [Change the header cells' background color](#change-the-header-cells-background-color)
+    - [Hide "No data to display" message](#hide-no-data-to-display-message)
+    - [Change the default "No data to display" text](#change-the-default-no-data-to-display-text)
     - [Hide vertical lines](#hide-vertical-lines)
+    - [Hide header row](#hide-header-row)
+    - [Align header captions](#align-header-captions)
     - [Prevent caption wrapping](#prevent-caption-wrapping)
     - [Color alternate rows](#color-alternate-rows)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
+  - [DxFormLayout](#dxformlayout)
+    - [Change the location and style of a Form Layout item](#change-the-location-and-style-of-a-form-layout-item)
+    - [Change item captions](#change-item-captions)
   - [DxToolbar](#dxtoolbar)
+    - [Change title text color](#change-title-text-color)
     - [Center toolbar item content](#center-toolbar-item-content)
   - [DxTabs](#dxtabs)
     - [Create rounded tabs](#create-rounded-tabs)
@@ -17,10 +31,18 @@
     - [Change edit form width](#change-edit-form-width)
   - [DxEditors](#dxeditors)
     - [Modify the Clear button](#modify-the-clear-button)
+    - [DxTextBox](#dxtextbox)
+      - [Change the input's text style](#change-the-inputs-text-style)
+      - [Customize the Clear button's icon](#customize-the-clear-buttons-icon)
+    - [DxTagBox](#dxtagbox)
+      - [Always force tags to start at a new line](#always-force-tags-to-start-at-a-new-line)
     - [DxComboBox](#dxcombobox)
+      - [Change the height of a drop-down list](#change-the-height-of-a-drop-down-list)
+      - [Change drop-down text font size](#change-drop-down-text-font-size)
       - [Modify "No data to display" message](#modify-no-data-to-display-message)
+      - [Hide column headers](#hide-column-headers)
     - [DxDateEdit](#dxdateedit)
-      - [Hide the date picker button](#hide-the-date-picker-button)
+      - [Hide the drop down button](#hide-the-drop-down-button)
       - [Localize the Time section scroll picker's text](#localize-the-time-section-scroll-pickers-text)
       - [Highlight a week on mouse hover](#highlight-a-week-on-mouse-hover)
     - [DxCalender](#dxcalender)
@@ -30,6 +52,9 @@
       - [Hide the footer's Today button](#hide-the-footers-today-button)
   - [DxPopup](#dxpopup)
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
+    - [Hide the modal background](#hide-the-modal-background)
+    - [Adjust popup size and position on the page](#adjust-popup-size-and-position-on-the-page)
+    - [Customize popup size and position](#customize-popup-size-and-position)
 
 # How to update CSS styles to v22.2
 
@@ -49,6 +74,253 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
 # Most common customizations
 
 ## DxGrid
+
+### Focus an editor inside the edit form
+
+To focus an editor inside the grid edit form in v22.1 and earlier, it was necessary to use the JavaScript input.focus method:
+
+```js
+function focusFirstEditor() {
+    setTimeout(function myfunction() {
+        var inputElement = document.querySelectorAll(".my-grid .dxbs-grid-edit-form input")[1];
+        inputElement.focus();
+    }, 1000);
+}
+```
+In v22.2, we automatically focus the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
+
+```cs
+@page "/grid"
+@using System.Globalization
+
+@using DxBlazorApplication1.Data
+@inject WeatherForecastService ForecastService
+
+<h2>DevExpress Grid</h2>
+
+
+<DxGrid Data="@forecasts" CssClass="my-grid" EditMode="GridEditMode.EditForm">
+    <EditFormTemplate Context="EditFormContext">
+        @{
+            var employee = (WeatherForecast)EditFormContext.EditModel;
+        }
+        <DxFormLayout CssClass="w-100">
+            <DxFormLayoutItem Caption="First Name:">
+                <DxTextBox @bind-Text="@employee.Name1" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Last Name:">
+                <CascadingValue Value="true" Name="FocusOnEditStart" IsFixed="true">
+                    <DxTextBox @bind-Text="@employee.Name2" />
+                </CascadingValue>
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </EditFormTemplate>
+    <Columns>
+        <DxGridCommandColumn Width="120px" />
+        <DxGridDataColumn Caption="Name1" FieldName="Name1" />
+        <DxGridDataColumn Caption="Name2" FieldName="Name2" />
+    </Columns>
+</DxGrid>
+
+@code {    
+    private WeatherForecast[] forecasts;
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Change selected row background color
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-table {
+    --dx-grid-selection-color: blue;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid {
+    --dxbl-grid-selection-bg: red;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Hide the expand/collapse button for detail rows
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxGrid @ref="masterGrid" Data="MasterGridData" ShowAllRows="true" CustomizeElement="OnCustomizeElement">
+    <Columns>
+        <DxGridDataColumn FieldName="CustomerId" />
+        <DxGridDataColumn FieldName="CustomerName" />
+    </Columns>
+    <DetailRowTemplate>
+        <DetailGrid Customer="(Customer)context.DataItem" />
+    </DetailRowTemplate>
+</DxGrid>
+
+void OnCustomizeElement(GridCustomizeElementEventArgs args)
+{
+    if (args.ElementType == GridElementType.DataRow)
+    {
+        var masterRowKey = args.Grid.GetRowValue(args.VisibleIndex, args.Grid.KeyFieldName);
+        if (true /* your logic here to check if there are detail rows for a current master row (masterRowKey)*/)
+        {
+            args.CssClass = "hideDetailButton";
+        }
+    }
+}
+```
+In v22.1, use the following CSS rules:
+
+```css
+.hideDetailButton .dxbs-grid-expand-button-cell button {
+    visibility: hidden;
+}
+```
+
+In v22.2, use the following CSS rules:
+
+```css
+.hideDetailButton .dxbl-grid-expand-button-cell .dxbl-grid-expand-button {
+    visibility: hidden;
+}
+```
+
+
+[Return to the table of contents.](#thetableofcontents)
+
+### Hide the skeleton element
+
+In both v22.1 and v22.2, use the same razor code:
+
+  ```cs
+@inject HttpClient client
+@inject IJSRuntime JS
+
+<DxGrid Data="@productsDatasource" @ref="grid">
+    <Columns>
+        <DxGridDataColumn FieldName="ProductName" Width="200px" SortIndex="0" />
+        <DxGridDataColumn Caption="Price" FieldName="UnitPrice" />
+    </Columns>
+</DxGrid>
+
+@code {
+    private GridDevExtremeDataSource<Product>? productsDatasource { get; set; }
+    private DxGrid? grid;
+
+    protected override void OnInitialized() {
+        var uri = new Uri("https://demos.devexpress.com/blazor/api/nwind/getproducts");
+        productsDatasource = new GridDevExtremeDataSource<Product>(client, uri);
+    }
+}
+  ```
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-skeleton-content {
+    visibility: hidden;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid-skeleton-content {
+    visibility: hidden;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Remove paddings for a detail grid
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid .dxbs-grid-detail-cell {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+```
+In v22.2, use the following CSS rules:
+
+```cs
+.dxbl-grid .dxbl-grid-table .dxbl-grid-detail-cell {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Change the header cells' background color
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-header:nth-child(1){
+    background-color: aqua !important
+}
+```
+In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
+
+```cs
+void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
+    if(e.ElementType == GridElementType.HeaderRow) {
+    e.Style = "background-color: aqua;";
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Hide "No data to display" message
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-empty-data{
+    visibility:hidden;
+}
+
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid-empty-data{
+    visibility:hidden;
+}
+
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Change the default "No data to display" text
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid .dxbs-grid-empty-data > span {
+    display: none;
+}
+
+.dxbs-grid .dxbs-grid-empty-data::after {
+    content: 'my test content'
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid .dxbl-grid-empty-data > span {
+    display: none;
+}
+
+.dxbl-grid .dxbl-grid-empty-data::after {
+    content: 'my test content'
+}
+```
+[Return to the table of contents.](#thetableofcontents)
 
 ### Hide vertical lines
 
@@ -93,6 +365,134 @@ In v22.2, use the following CSS rules:
     }
 
 ```
+[Return to the table of contents.](#thetableofcontents)
+
+### Hide header row
+
+To hide header row (universal approach), handle the CustomizeElement event:
+
+```cs
+<style>
+    .hiddenHeader {
+        display :none;
+    }
+
+</style>
+
+<DxCheckBox @bind-Checked="ShowHeader">Show Header</DxCheckBox>
+
+<DxGrid Data="@forecasts" 
+        CustomizeElement="OnCustomizeElement">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" Width="200px" SortIndex="0" />
+        <DxGridDataColumn Caption="Summary" FieldName="Summary" />
+        <DxGridDataColumn Caption="Temperature (C)" FieldName="TemperatureC" Width="150px" />
+        <DxGridDataColumn Caption="Temperature (F)" FieldName="TemperatureF" Width="150px" />
+    </Columns>
+</DxGrid>
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    public bool ShowHeader = true;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+    void OnCustomizeElement (GridCustomizeElementEventArgs args) {
+        if (args.ElementType == GridElementType.HeaderRow) {
+            args.CssClass = ShowHeader ? "" : "hiddenHeader";
+        }
+    }
+}
+```
+
+You can achieve the same result with CSS rules. In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxCheckBox @bind-Checked="ShowHeader">Show Header</DxCheckBox>
+
+<DxGrid Data="@forecasts" CssClass="@(ShowHeader ? "" : "hiddenHeader")">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" Width="200px" SortIndex="0" />
+        <DxGridDataColumn Caption="Summary" FieldName="Summary" />
+        <DxGridDataColumn Caption="Temperature (C)" FieldName="TemperatureC" Width="150px" />
+        <DxGridDataColumn Caption="Temperature (F)" FieldName="TemperatureF" Width="150px" />
+    </Columns>
+</DxGrid>
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    public bool ShowHeader = true;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
+```
+
+In v22.1, use the following CSS rules:
+```css
+.hiddenHeader .dxbs-grid-header-content {
+    display: none;
+}
+
+.hiddenHeader .dxbs-grid-header {
+    padding: 0px 0px 0px 0px !important;
+    border-bottom: none !important;
+}
+```
+In v22.2, use the following CSS rules:
+```css
+.hiddenHeader .dxbl-grid-header-content {
+    display: none;
+}
+
+.hiddenHeader .dxbl-grid-header {
+    padding: 0px 0px 0px 0px !important;
+    border-bottom: none !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+### Align header captions
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxGrid Data="@forecasts"
+        CssClass="myGrid">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" />
+        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+    </Columns>
+</DxGrid>
+
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
+```
+
+In v22.1, use the following CSS rules:
+```css
+.myGrid .dxbs-grid-header-content {
+    justify-content: right;
+}
+```
+In v22.2, use the following CSS rules:
+```css
+.myGrid .dxbl-grid-header-content {
+    justify-content: right;
+}
+```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ### Prevent caption wrapping
@@ -249,7 +649,86 @@ In v22.2, use the following code:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
+## DxFormLayout
+
+### Change the location and style of a Form Layout item
+
+In old versions, it was necessary to both use a custom label and to hide the built-in label:
+
+```cs
+<style>
+.isRequired {
+    font-weight: bold !important;
+}
+</style>
+
+<DxFormLayoutItem Caption="" ColSpanMd="6">
+    <label class="col-form-label dxbs-fl-cpt isRequired">Company Name: *</label>
+    <DxTextBox @bind-Text="@Name" />
+</DxFormLayoutItem>
+```
+In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties instead (available for Form Layout items):
+
+```cs
+<style>
+.isRequired {
+    font-weight: bold !important;
+}
+</style>
+
+<DxFormLayoutItem Caption="Company Name: *" CaptionPosition="CaptionPosition.Vertical" CaptionCssClass="isRequired" ColSpanMd="6">
+    <DxTextBox @bind-Text="@Name" />
+</DxFormLayoutItem>
+```
+[Return to the table of contents.](#thetableofcontents)
+
+
+### Change item captions
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-fl-cpt {
+    text-align: right;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-fl-cpt {
+    text-align: right;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
 ## DxToolbar
+
+### Change title text color
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxToolbar  CssClass="myClass" Title="Test">
+...
+</DxToolbar>
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.myClass .dxbs-ta-title{
+    color:red!important;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.myClass .dxbl-toolbar-title{
+    color:red!important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
 
 ### Center toolbar item content
 
@@ -417,7 +896,176 @@ In v22.2 use the following code:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
+### DxTextBox 
+
+#### Change the input's text style
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxTextBox CssClass=@(EditMode ? "title-editor" : "title-editor-readonly")  ReadOnly=@(EditMode ? false : true)
+           Text="Projekt ZUM 4.0 - Installtion new server">
+</DxTextBox>
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.title-editor .dxbs-editor-input-container > input {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.title-editor-readonly .dxbs-editor-input-container > input {
+    color: #000000;
+    background-color: transparent;
+    font-size: 2rem;
+    font-weight: 600;
+}
+```
+
+In v22.2, use the following CSS rules:
+
+```css
+dxbl-input-editor.title-editor > input {
+    color: #000000;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+dxbl-input-editor.title-editor-readonly > input {
+    color: #000000;
+    background-color: transparent;
+    font-size: 2rem;
+    font-weight: 600;
+}
+```
+
+
+[Return to the table of contents.](#thetableofcontents)
+
+.myClass .dxbl-toolbar-title{
+    color:red!important;
+}
+
+#### Customize the Clear button's icon
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxTextBox @bind-Text="@TextValue" ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"></DxTextBox>
+@code {
+    string TextValue { get; set; }
+}
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-editor-clear-btn > svg {
+    display:none;
+}
+.dxbs-editor-clear-btn::after {
+    content: " ";
+    width:16px;
+    height:16px;
+    background-image:url('/images/facebook_icon.svg');
+}
+```
+
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-edit-btn-clear > svg {
+    display:none;
+}
+.dxbl-edit-btn-clear::after {
+    content: " ";
+    width:16px;
+    height:16px;
+    background-image:url('/images/facebook_icon.svg');
+}
+```
+
+
+[Return to the table of contents.](#thetableofcontents)
+
+### DxTagBox 
+
+#### Always force tags to start at a new line
+
+In v22.1 use the following code:
+
+```css
+.dxbs-tag,
+.dxbs-tag-text {
+   width: 100%;
+}
+```
+
+In v22.2, use the following code:
+
+```css
+.dxbl-tag,
+.dxbl-tag-text {
+   width: 100%;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+
 ### DxComboBox 
+
+#### Change the height of a drop-down list
+
+In both v22.1 and v22.2, use the same razor code:
+```cs
+<DxComboBox Data="@dataSource" @bind-Value="@Value" TextFieldName="Name" ValueFieldName="ID" DropDownCssClass="combo-dropdown">
+</DxComboBox>
+```
+
+In v22.1 use the following code:
+
+```css
+.combo-dropdown {
+    max-height: 500px !important;
+}
+    .combo-dropdown .dxbs-listbox {
+        max-height: 500px !important;
+    }
+```
+
+In v22.2, use the following code:
+
+```css
+.combo-dropdown {
+    max-height: 500px !important;
+}
+    .combo-dropdown .dxbl-listbox {
+        max-height: 500px !important;
+    }
+```
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change drop-down text font size
+
+In v22.1 use the following code:
+
+```css
+ ul.dxbs-dropdown-area li {
+       font-size: smaller;
+}
+```
+
+In v22.2, use the following code:
+
+```css
+ .dxbl-edit-dropdown li {
+       font-size: smaller;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
 
 #### Modify "No data to display" message
 
@@ -466,34 +1114,72 @@ In v22.2, use the following code:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
+#### Hide column headers
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxComboBox Data="@forecasts" @bind-Value="@test"
+            DropDownCssClass="SecondComboBoxDropDown">
+    <DxListEditorColumn FieldName="@nameof(WeatherForecast.Date)"
+                        Caption="Date" />
+    <DxListEditorColumn FieldName="@nameof(WeatherForecast.TemperatureF)"
+                        Caption="Temperature F" />
+</DxComboBox>
+
+
+@code {
+    private WeatherForecast[]? forecasts;
+    WeatherForecast test;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
+```
+
+In v22.1, use the following code:
+
+```css
+.SecondComboBoxDropDown .dxbs-listbox .dxbs-gridview > .card > .dxgvHSDC {
+    display: none !important;
+}
+
+```
+
+In v22.2, use the following code:
+
+```css
+.SecondComboBoxDropDown .dxgvHSDC {
+    display: none !important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
 ### DxDateEdit 
 
 Internally, we use DxCalendar in the DxDateEdit popup. As such, when you need to apply a style to DxCalendar in the DxDateEdit popup, you can write selectors for DxCalendar itself. To write a selector for a specific DxDateEdit, assign the DxDateEdit.DropDownCssClass property.
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Hide the date picker button
+#### Hide the drop down button
 
 In both v22.1 and v22.2, use the same razor code:
 ```cs
-<DxDateEdit CssClass="my-editor-readonly" @bind-Date="@DateStart" ReadOnly="true" TimeSectionVisible="true" ></DxDateEdit>
-
-@code {
-    public DateTime DateStart { get; set; } = DateTime.Now;    
-}
+<DxDateEdit @bind-Date="@DateTimeValue" CssClass="my-date-edit" />
 ```
 
 In v22.1, use the following CSS rule:
 
 ```css
-.my-editor-readonly .dxbs-editor-input-container > input {
+.my-date-edit .dxbs-editor-dropdown-button {
     display: none;
 }
 ```
 In v22.2, use the following CSS rule:
 
 ```css
-.my-editor-readonly .dxbl-btn-group {
+.my-date-edit .dxbl-edit-btn-dropdown {
     display: none;
 }
 
@@ -752,3 +1438,126 @@ In v22.2, use the following CSS rule:
 }
 ```
 [Return to the table of contents.](#thetableofcontents)
+
+### Hide the modal background
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<div class="target-container" @onclick="@(() => PopupVisible = true)">
+    <p class="target-caption">CLICK TO SHOW A POP-UP WINDOW</p>
+</div>
+<DxPopup HeaderText="Header"
+         @bind-Visible="@PopupVisible"
+         BodyText="Test content">
+</DxPopup>
+
+@code {
+    bool PopupVisible { get; set; } = false;
+}
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.modal-backdrop.dxbs-modal-back {
+    display: none!important;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-modal-back {
+    display: none!important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Adjust popup size and position on the page
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxPopup @bind-Visible="@SummaryGeneratedFlag" ShowCloseButton="true" CssClass="DashboardModal" HeaderText="Work Control Summary">
+    <Content>
+        <p>Content</p>
+    </Content>
+</DxPopup>
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.DashboardModal.modal-dialog.dxbs-popup {
+    position: fixed !important;
+    left: auto !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 30% !important;
+    margin: 0rem !important;
+    top: 0 !important;
+    height: 100% !important;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.DashboardModal.modal-dialog.dxbs-popup {
+    position: fixed !important;
+    left: auto !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 30% !important;
+    margin: 0rem !important;
+    top: 0 !important;
+    height: 100% !important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Customize popup size and position
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxPopup @bind-Visible="@SummaryGeneratedFlag" ShowCloseButton="true" CssClass="DashboardModal" HeaderText="Work Control Summary">
+    <Content>
+        <p>Content</p>
+    </Content>
+</DxPopup>
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.DashboardModal.modal-dialog.dxbs-popup {
+    position: fixed !important;
+    left: auto !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 30% !important;
+    margin: 0rem !important;
+    top: 0 !important;
+    height: 100% !important;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.DashboardModal.modal-dialog.dxbs-popup {
+    position: fixed !important;
+    left: auto !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 30% !important;
+    margin: 0rem !important;
+    top: 0 !important;
+    height: 100% !important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
