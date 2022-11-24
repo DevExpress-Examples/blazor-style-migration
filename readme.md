@@ -5,20 +5,20 @@
 - [How to update CSS styles to v22.2](#how-to-update-css-styles-to-v222)
 - [Most common customizations](#most-common-customizations)
   - [DxGrid](#dxgrid)
-    - [Focus an editor inside the edit form](#focus-an-editor-inside-the-edit-form)
+    - [Align header captions](#align-header-captions)
+    - [Color alternate rows](#color-alternate-rows)
+    - [Change the default "No data to display" text](#change-the-default-no-data-to-display-text)
+    - [Change the header cells' background color](#change-the-header-cells-background-color)
     - [Change selected row background color](#change-selected-row-background-color)
+    - [Focus an editor inside the edit form](#focus-an-editor-inside-the-edit-form)
     - [Hide the expand/collapse button for detail rows](#hide-the-expandcollapse-button-for-detail-rows)
     - [Hide the skeleton element](#hide-the-skeleton-element)
-    - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
-    - [Change the header cells' background color](#change-the-header-cells-background-color)
     - [Hide "No data to display" message](#hide-no-data-to-display-message)
-    - [Change the default "No data to display" text](#change-the-default-no-data-to-display-text)
     - [Hide vertical lines](#hide-vertical-lines)
     - [Hide header row](#hide-header-row)
-    - [Align header captions](#align-header-captions)
-    - [Prevent caption wrapping](#prevent-caption-wrapping)
-    - [Color alternate rows](#color-alternate-rows)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
+    - [Prevent caption wrapping](#prevent-caption-wrapping)
+    - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
   - [DxFormLayout](#dxformlayout)
     - [Change the location and style of a Form Layout item](#change-the-location-and-style-of-a-form-layout-item)
     - [Change item captions](#change-item-captions)
@@ -34,6 +34,7 @@
     - [DxTextBox](#dxtextbox)
       - [Change the input's text style](#change-the-inputs-text-style)
       - [Customize the Clear button's icon](#customize-the-clear-buttons-icon)
+      - [Display an icon inside the input element](#display-an-icon-inside-the-input-element)
     - [DxTagBox](#dxtagbox)
       - [Always force tags to start at a new line](#always-force-tags-to-start-at-a-new-line)
     - [DxComboBox](#dxcombobox)
@@ -42,19 +43,19 @@
       - [Modify "No data to display" message](#modify-no-data-to-display-message)
       - [Hide column headers](#hide-column-headers)
     - [DxDateEdit](#dxdateedit)
+      - [Highlight a week on mouse hover](#highlight-a-week-on-mouse-hover)
       - [Hide the drop down button](#hide-the-drop-down-button)
       - [Localize the Time section scroll picker's text](#localize-the-time-section-scroll-pickers-text)
-      - [Highlight a week on mouse hover](#highlight-a-week-on-mouse-hover)
     - [DxCalender](#dxcalender)
       - [Change font color of weekends](#change-font-color-of-weekends)
       - [Hide week numbers](#hide-week-numbers)
       - [Hide the footer](#hide-the-footer)
       - [Hide the footer's Today button](#hide-the-footers-today-button)
   - [DxPopup](#dxpopup)
-    - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
-    - [Hide the modal background](#hide-the-modal-background)
     - [Adjust popup size and position on the page](#adjust-popup-size-and-position-on-the-page)
     - [Customize popup size and position](#customize-popup-size-and-position)
+    - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
+    - [Hide the modal background](#hide-the-modal-background)
 
 # How to update CSS styles to v22.2
 
@@ -74,6 +75,161 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
 # Most common customizations
 
 ## DxGrid
+
+### Align header captions
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxGrid Data="@forecasts"
+        CssClass="myGrid">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" />
+        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+    </Columns>
+</DxGrid>
+
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
+```
+
+In v22.1, use the following CSS rules:
+```css
+.myGrid .dxbs-grid-header-content {
+    justify-content: right;
+}
+```
+In v22.2, use the following CSS rules:
+```css
+.myGrid .dxbl-grid-header-content {
+    justify-content: right;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+### Color alternate rows
+
+To color alternate rows (universal approach), handle the CustomizeElement event:
+
+```cs
+<style>
+    .highlighted-item > td {
+        background-color: rgba(245, 198, 203, 0.5);
+    }
+</style>
+
+<DxGrid Data="@forecasts" CssClass="my-grid" CustomizeElement="Grid_CustomizeElement">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" />
+        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+    </Columns>
+</DxGrid>
+
+
+@code {
+    private WeatherForecast[] forecasts;
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+    void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
+        if (e.ElementType == GridElementType.DataRow) {
+            e.CssClass = e.VisibleIndex % 2 == 0 ? "highlighted-item" : null;
+        }
+
+    }
+}
+```
+
+If your DxGrid does not display master-detail relationships and does not use the Grid’s grouping capabilities, use the following v22.2 CSS rule:
+
+```cs
+<style>
+    .my-grid .dxbl-grid-table > tbody > tr:nth-child(2n+1) {
+        background-color: lightgray;
+    }
+</style>
+
+<DxGrid Data="@forecasts" CssClass="my-grid">
+    <Columns>
+        <DxGridDataColumn Caption="Date" FieldName="Date" />
+        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+    </Columns>
+</DxGrid>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+
+### Change the default "No data to display" text
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid .dxbs-grid-empty-data > span {
+    display: none;
+}
+
+.dxbs-grid .dxbs-grid-empty-data::after {
+    content: 'my test content'
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid .dxbl-grid-empty-data > span {
+    display: none;
+}
+
+.dxbl-grid .dxbl-grid-empty-data::after {
+    content: 'my test content'
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+
+### Change the header cells' background color
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-header:nth-child(1){
+    background-color: aqua !important
+}
+```
+In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
+
+```cs
+void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
+    if(e.ElementType == GridElementType.HeaderRow) {
+    e.Style = "background-color: aqua;";
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Change selected row background color
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-grid-table {
+    --dx-grid-selection-color: blue;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid {
+    --dxbl-grid-selection-bg: red;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
 
 ### Focus an editor inside the edit form
 
@@ -128,24 +284,6 @@ In v22.2, we automatically focus the first editor. If you wish to focus a differ
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 
-}
-```
-[Return to the table of contents.](#thetableofcontents)
-
-### Change selected row background color
-
-In v22.1, use the following CSS rules:
-
-```css
-.dxbs-grid-table {
-    --dx-grid-selection-color: blue;
-}
-```
-In v22.2, use the following CSS rules:
-
-```css
-.dxbl-grid {
-    --dxbl-grid-selection-bg: red;
 }
 ```
 [Return to the table of contents.](#thetableofcontents)
@@ -237,45 +375,6 @@ In v22.2, use the following CSS rules:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Remove paddings for a detail grid
-
-In v22.1, use the following CSS rules:
-
-```css
-.dxbs-grid .dxbs-grid-detail-cell {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-```
-In v22.2, use the following CSS rules:
-
-```cs
-.dxbl-grid .dxbl-grid-table .dxbl-grid-detail-cell {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-```
-[Return to the table of contents.](#thetableofcontents)
-
-### Change the header cells' background color
-
-In v22.1, use the following CSS rules:
-
-```css
-.dxbs-grid-header:nth-child(1){
-    background-color: aqua !important
-}
-```
-In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
-
-```cs
-void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
-    if(e.ElementType == GridElementType.HeaderRow) {
-    e.Style = "background-color: aqua;";
-}
-```
-[Return to the table of contents.](#thetableofcontents)
-
 ### Hide "No data to display" message
 
 In v22.1, use the following CSS rules:
@@ -293,32 +392,6 @@ In v22.2, use the following CSS rules:
     visibility:hidden;
 }
 
-```
-[Return to the table of contents.](#thetableofcontents)
-
-### Change the default "No data to display" text
-
-In v22.1, use the following CSS rules:
-
-```css
-.dxbs-grid .dxbs-grid-empty-data > span {
-    display: none;
-}
-
-.dxbs-grid .dxbs-grid-empty-data::after {
-    content: 'my test content'
-}
-```
-In v22.2, use the following CSS rules:
-
-```css
-.dxbl-grid .dxbl-grid-empty-data > span {
-    display: none;
-}
-
-.dxbl-grid .dxbl-grid-empty-data::after {
-    content: 'my test content'
-}
 ```
 [Return to the table of contents.](#thetableofcontents)
 
@@ -457,42 +530,46 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Align header captions
+### Place a scrollable DxGrid into DxPopup
 
-In both v22.1 and v22.2, use the same razor code:
+In v22.2, use the following code:
 
-```cs
-<DxGrid Data="@forecasts"
-        CssClass="myGrid">
-    <Columns>
-        <DxGridDataColumn Caption="Date" FieldName="Date" />
-        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
-    </Columns>
-</DxGrid>
+```css
+<style type="text/css">
+    .mop-data-grid {
+        height: 100%;
+        width:100%
+    }
+
+    .popupContent {
+        height: 800px;
+    }
+</style>
+
+
+<DxPopup HeaderText="Adresse" BodyCssClass="popupContent" @bind-Visible="@isVisible">        
+        <DxGrid Data="@forecasts" PageSize="@PageSize"
+                CssClass="mop-data-grid">
+            <Columns>
+                <DxGridDataColumn Caption="Date" FieldName="Date" />
+                <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+            </Columns>
+        </DxGrid>    
+</DxPopup>
 
 
 @code {
     private WeatherForecast[]? forecasts;
+    bool isVisible = true;
+
+    public int PageSize { get; set; }
 
     protected override async Task OnInitializedAsync() {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        PageSize = forecasts.Count();
     }
 }
 ```
-
-In v22.1, use the following CSS rules:
-```css
-.myGrid .dxbs-grid-header-content {
-    justify-content: right;
-}
-```
-In v22.2, use the following CSS rules:
-```css
-.myGrid .dxbl-grid-header-content {
-    justify-content: right;
-}
-```
-
 [Return to the table of contents.](#thetableofcontents)
 
 ### Prevent caption wrapping
@@ -555,99 +632,27 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Color alternate rows
 
-To color alternate rows (universal approach), handle the CustomizeElement event:
+### Remove paddings for a detail grid
 
-```cs
-<style>
-    .highlighted-item > td {
-        background-color: rgba(245, 198, 203, 0.5);
-    }
-</style>
-
-<DxGrid Data="@forecasts" CssClass="my-grid" CustomizeElement="Grid_CustomizeElement">
-    <Columns>
-        <DxGridDataColumn Caption="Date" FieldName="Date" />
-        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
-    </Columns>
-</DxGrid>
-
-
-@code {
-    private WeatherForecast[] forecasts;
-    protected override async Task OnInitializedAsync() {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-    void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
-        if (e.ElementType == GridElementType.DataRow) {
-            e.CssClass = e.VisibleIndex % 2 == 0 ? "highlighted-item" : null;
-        }
-
-    }
-}
-```
-
-If your DxGrid does not display master-detail relationships and does not use the Grid’s grouping capabilities, use the following v22.2 CSS rule:
-
-```cs
-<style>
-    .my-grid .dxbl-grid-table > tbody > tr:nth-child(2n+1) {
-        background-color: lightgray;
-    }
-</style>
-
-<DxGrid Data="@forecasts" CssClass="my-grid">
-    <Columns>
-        <DxGridDataColumn Caption="Date" FieldName="Date" />
-        <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
-    </Columns>
-</DxGrid>
-```
-
-[Return to the table of contents.](#thetableofcontents)
-
-### Place a scrollable DxGrid into DxPopup
-
-In v22.2, use the following code:
+In v22.1, use the following CSS rules:
 
 ```css
-<style type="text/css">
-    .mop-data-grid {
-        height: 100%;
-        width:100%
-    }
+.dxbs-grid .dxbs-grid-detail-cell {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+```
+In v22.2, use the following CSS rules:
 
-    .popupContent {
-        height: 800px;
-    }
-</style>
-
-
-<DxPopup HeaderText="Adresse" BodyCssClass="popupContent" @bind-Visible="@isVisible">        
-        <DxGrid Data="@forecasts" PageSize="@PageSize"
-                CssClass="mop-data-grid">
-            <Columns>
-                <DxGridDataColumn Caption="Date" FieldName="Date" />
-                <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
-            </Columns>
-        </DxGrid>    
-</DxPopup>
-
-
-@code {
-    private WeatherForecast[]? forecasts;
-    bool isVisible = true;
-
-    public int PageSize { get; set; }
-
-    protected override async Task OnInitializedAsync() {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-        PageSize = forecasts.Count();
-    }
+```css
+.dxbl-grid .dxbl-grid-table .dxbl-grid-detail-cell {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 ```
 [Return to the table of contents.](#thetableofcontents)
+
 
 ## DxFormLayout
 
@@ -945,10 +950,6 @@ dxbl-input-editor.title-editor-readonly > input {
 
 [Return to the table of contents.](#thetableofcontents)
 
-.myClass .dxbl-toolbar-title{
-    color:red!important;
-}
-
 #### Customize the Clear button's icon
 
 In both v22.1 and v22.2, use the same razor code:
@@ -986,6 +987,67 @@ In v22.2, use the following CSS rules:
     height:16px;
     background-image:url('/images/facebook_icon.svg');
 }
+```
+
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Display an icon inside the input element
+
+
+In v22.1, use the following CSS rules:
+
+```cs
+<style>
+    .glyphicon .form-control {
+        padding-left: 3em;
+    }
+</style>
+
+<div style="position: relative;">
+    <DxTextBox CssClass="glyphicon" NullText="Type something here"></DxTextBox>
+    <div style="position: absolute; width: 100%; height: 100%; top: 0; pointer-events: none;">
+        <svg class="dxbs-button-icon" role="img" style="position: static; height: 100%; width: calc(1em + 18px); padding-left: 1em;">
+            <use href="#dxbs-calendar-icon" />
+        </svg>
+    </div>
+</div>
+<div style="display: none;">
+    <svg version="1.1" id="_x31_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+    <symbol id="dxbs-calendar-icon" viewBox="0 0 18 18">
+    <style type="text/css">
+
+        .st0 {
+            fill-rule: evenodd;
+            clip-rule: evenodd;
+            fill: #3F3F3F;
+        }
+</style>
+    <path id="_x32_" d="M6,8v2H4V8H6 M10,8v2H8V8H10 M14,8v2h-2V8H14 M16,1c1.1,0,2,0.9,2,2v13c0,1.1-0.9,2-2,2H2c-1.1,0-2-0.9-2-2V3
+            c0-1.1,0.9-2,2-2h1V0h2v1h8V0h2v1H16 M16,16V5H2v11H16 M6,12v2H4v-2H6 M10,12v2H8v-2H10 M14,12v2h-2v-2H14z" />
+            </symbol>
+            </svg>
+</div>
+```
+
+In v22.2, use the following CSS rules:
+
+```cs
+<style>
+    .glyphicon input {
+        padding-left: 3em;
+    }
+</style>
+
+<div style="position: relative;">
+    <DxTextBox CssClass="glyphicon" NullText="Type something here"></DxTextBox>
+    <div style="position: absolute; width: 100%; height: 100%; top: 0; pointer-events: none;">
+        <div style="position: static; height: 100%; width: calc(1em + 18px); padding-left: 1em;padding-top:0.2em;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16"> <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" /> </svg>
+        </div>
+    </div>
+</div>
 ```
 
 
@@ -1162,6 +1224,35 @@ Internally, we use DxCalendar in the DxDateEdit popup. As such, when you need to
 
 [Return to the table of contents.](#thetableofcontents)
 
+#### Highlight a week on mouse hover
+
+In both v22.1 and v22.2, use the same razor code:
+```cs
+<DxDateEdit @bind-Date="@DateStart" DropDownCssClass="customDateEdit">
+</DxDateEdit>
+
+@code {
+    public DateTime DateStart { get; set; } = DateTime.Now;    
+}
+```
+
+In v22.1, use the following CSS rule:
+
+```css
+.customDateEdit .dxbs-calendar-table tr:hover {
+    background-color: lightgray;
+}
+```
+In v22.2, use the following CSS rule:
+
+```css
+.customDateEdit .dxbl-calendar-week-row:hover {
+    background-color: lightgray;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+
 #### Hide the drop down button
 
 In both v22.1 and v22.2, use the same razor code:
@@ -1251,33 +1342,6 @@ function updateRoller(hour, minute, second) {
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-#### Highlight a week on mouse hover
-
-In both v22.1 and v22.2, use the same razor code:
-```cs
-<DxDateEdit @bind-Date="@DateStart" DropDownCssClass="customDateEdit">
-</DxDateEdit>
-
-@code {
-    public DateTime DateStart { get; set; } = DateTime.Now;    
-}
-```
-
-In v22.1, use the following CSS rule:
-
-```css
-.customDateEdit .dxbs-calendar-table tr:hover {
-    background-color: lightgray;
-}
-```
-In v22.2, use the following CSS rule:
-
-```css
-.customDateEdit .dxbl-calendar-week-row:hover {
-    background-color: lightgray;
-}
-```
-[Return to the table of contents.](#thetableofcontents)
 
 ### DxCalender
 
@@ -1399,80 +1463,6 @@ In v22.2, use the following CSS rule:
 
 ## DxPopup
 
-### Customize the Close header's button icon
-
-In both v22.1 and v22.2, use the same razor code:
-
-```cs
-<DxPopup HeaderText="Header" @bind-Visible="@PopupVisible" CssClass="customPopup">
-    <Content>
-       ...
-    </Content>
-</DxPopup>
-```
-
-In v22.1, use the following CSS rule:
-```css
-.customPopup .dxbs-popup-header-button{
-    content: "icn";
-    color: transparent;
-    display: inline-block;
-    background-image: url("/images/facebook_icon.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-.customPopup .dxbs-popup-header-button svg {
-    display: none;
-}
-```
-
-In v22.2, use the following CSS rule:
-```css
-.customPopup .dxbl-popup-header-button .dxbl-image {
-    content: "icn";
-    color: transparent;
-    display: inline-block;
-    background-image: url("/images/facebook_icon.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-```
-[Return to the table of contents.](#thetableofcontents)
-
-### Hide the modal background
-
-In both v22.1 and v22.2, use the same razor code:
-
-```cs
-<div class="target-container" @onclick="@(() => PopupVisible = true)">
-    <p class="target-caption">CLICK TO SHOW A POP-UP WINDOW</p>
-</div>
-<DxPopup HeaderText="Header"
-         @bind-Visible="@PopupVisible"
-         BodyText="Test content">
-</DxPopup>
-
-@code {
-    bool PopupVisible { get; set; } = false;
-}
-```
-
-In v22.1, use the following CSS rules:
-
-```css
-.modal-backdrop.dxbs-modal-back {
-    display: none!important;
-}
-```
-In v22.2, use the following CSS rules:
-
-```css
-.dxbl-modal-back {
-    display: none!important;
-}
-```
-[Return to the table of contents.](#thetableofcontents)
-
 ### Adjust popup size and position on the page
 
 In both v22.1 and v22.2, use the same razor code:
@@ -1561,3 +1551,78 @@ In v22.2, use the following CSS rules:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
+
+
+### Customize the Close header's button icon
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<DxPopup HeaderText="Header" @bind-Visible="@PopupVisible" CssClass="customPopup">
+    <Content>
+       ...
+    </Content>
+</DxPopup>
+```
+
+In v22.1, use the following CSS rule:
+```css
+.customPopup .dxbs-popup-header-button{
+    content: "icn";
+    color: transparent;
+    display: inline-block;
+    background-image: url("/images/facebook_icon.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.customPopup .dxbs-popup-header-button svg {
+    display: none;
+}
+```
+
+In v22.2, use the following CSS rule:
+```css
+.customPopup .dxbl-popup-header-button .dxbl-image {
+    content: "icn";
+    color: transparent;
+    display: inline-block;
+    background-image: url("/images/facebook_icon.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Hide the modal background
+
+In both v22.1 and v22.2, use the same razor code:
+
+```cs
+<div class="target-container" @onclick="@(() => PopupVisible = true)">
+    <p class="target-caption">CLICK TO SHOW A POP-UP WINDOW</p>
+</div>
+<DxPopup HeaderText="Header"
+         @bind-Visible="@PopupVisible"
+         BodyText="Test content">
+</DxPopup>
+
+@code {
+    bool PopupVisible { get; set; } = false;
+}
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.modal-backdrop.dxbs-modal-back {
+    display: none!important;
+}
+```
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-modal-back {
+    display: none!important;
+}
+```
+[Return to the table of contents.](#thetableofcontents)
