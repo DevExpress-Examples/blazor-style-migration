@@ -31,6 +31,7 @@
     - [Change edit form width](#change-edit-form-width)
   - [DxEditors](#dxeditors)
     - [Modify the Clear button](#modify-the-clear-button)
+    - [Blazor Editors inside the "input-group" container](#blazor-editors-inside-the-input-group-container)
     - [DxTextBox](#dxtextbox)
       - [Change the input's text style](#change-the-inputs-text-style)
       - [Customize the Clear button's icon](#customize-the-clear-buttons-icon)
@@ -898,6 +899,37 @@ In v22.2 use the following code:
     Text="123"
     CssClass="my-textbox"
     ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"></DxTextBox>
+```
+[Return to the table of contents.](#thetableofcontents)
+
+### Blazor Editors inside the "input-group" container
+In v22.1 editors occupy the 100% width of the container in the following markup:
+```cs
+<div class="input-group">
+    <DxTextBox ... />
+    <DxMemo ... />
+    <DxSpinEdit ... />
+    <DxComboBox ... />
+    <DxTagBox ... />
+    <DxDateEdit ... />
+</div>
+```
+In v22.2 it's necessary to set the 100% width to each editor:
+```cs
+<style>
+    .editor-width {
+        width: 100%;
+    }
+</style>
+
+<div class="input-group">
+    <DxTextBox CssClass="editor-width" ... />
+    <DxMemo CssClass="editor-width" ... />
+    <DxSpinEdit CssClass="editor-width" ... />
+    <DxComboBox CssClass="editor-width" ... />
+    <DxTagBox CssClass="editor-width" ... />
+    <DxDateEdit CssClass="editor-width" ... />
+</div>
 ```
 [Return to the table of contents.](#thetableofcontents)
 
