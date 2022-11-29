@@ -2,9 +2,23 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1130491)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
+
+# DevExpress Blazor Components - How to Update CSS Styles to v22.2
+
+This document summarizes the most often cases when you should use our private CSS selectors to apply a style to an element.
+ 
+You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.1 or prior, and copy the new equivalent of this selector.
+
+If you did not manage to find your scenario in this document, you can inspect a component render and create a new CSS selector as described in the following articles: 
+
+* [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
+* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
+
+Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
+
 <a name="thetableofcontents"></a>
-- [How to update CSS styles to v22.2](#how-to-update-css-styles-to-v222)
-- [Most common customizations](#most-common-customizations)
+## Table of Contents
+
   - [DxGrid](#dxgrid)
     - [Align header captions](#align-header-captions)
     - [Color alternate rows](#color-alternate-rows)
@@ -59,26 +73,9 @@
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
 
-# How to update CSS styles to v22.2
-
-In the [Most common customizations](#most-common-customizations) section of this repository, we summarized the most often cases when our users should use our private CSS selectors to apply a style to an element. 
- 
-Also, you can press Ctrl+F and search for a private CSS selector that you used in a previous version. This will help you find a selector that you used in v22.1 or prior, and copy the new equivalent of this selector.
-
-If you didn't manage to find your scenario in this document, you can create a new CSS selector by inspecting a component render as described in the following articles: 
-
-[View and change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
-[How to implement CSS-related solutions for DevExpress components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
-
-Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
-
-[Return to the table of contents.](#thetableofcontents)
-
-# Most common customizations
-
 ## DxGrid
 
-### Align header captions
+### Align Header Captions
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -102,6 +99,7 @@ In both v22.1 and v22.2, use the same razor code:
 ```
 
 In v22.1, use the following CSS rules:
+
 ```css
 .myGrid .dxbs-grid-header-content {
     justify-content: right;
@@ -116,7 +114,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Color alternate rows
+### Color Alternate Rows
 
 To color alternate rows (universal approach), handle the CustomizeElement event:
 
@@ -169,7 +167,7 @@ If your DxGrid does not display master-detail relationships and does not use the
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change the default "No data to display" text
+### Change the Default "No data to display" Text
 
 In v22.1, use the following CSS rules:
 
@@ -196,7 +194,7 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change the header cells' background color
+### Change the Header Cells' Background Color
 
 In v22.1, use the following CSS rules:
 
@@ -205,6 +203,7 @@ In v22.1, use the following CSS rules:
     background-color: aqua !important
 }
 ```
+
 In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
 
 ```cs
@@ -215,7 +214,7 @@ void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Change selected row background color
+### Change Selected Row Background Color
 
 In v22.1, use the following CSS rules:
 
@@ -233,9 +232,9 @@ In v22.2, use the following CSS rules:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Focus an editor inside the edit form
+### Focus an Editor Inside the Edit Form
 
-To focus an editor inside the grid edit form in v22.1 and earlier, it was necessary to use the JavaScript input.focus method:
+To focus an editor inside the grid edit form in v22.1 and earlier, use the JavaScript input.focus method:
 
 ```js
 function focusFirstEditor() {
@@ -245,7 +244,8 @@ function focusFirstEditor() {
     }, 1000);
 }
 ```
-In v22.2, we automatically focus the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
+
+In v22.2, the DxGrid automatically focuses the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
 
 ```cs
 @page "/grid"
@@ -290,7 +290,7 @@ In v22.2, we automatically focus the first editor. If you wish to focus a differ
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide the expand/collapse button for detail rows
+### Hide the Expand/Collapse Button for Detail Rows
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -317,6 +317,7 @@ void OnCustomizeElement(GridCustomizeElementEventArgs args)
     }
 }
 ```
+
 In v22.1, use the following CSS rules:
 
 ```css
@@ -336,7 +337,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide the skeleton element
+### Hide the Skeleton Element
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -361,6 +362,7 @@ In both v22.1 and v22.2, use the same razor code:
     }
 }
   ```
+  
 In v22.1, use the following CSS rules:
 
 ```css
@@ -368,6 +370,7 @@ In v22.1, use the following CSS rules:
     visibility: hidden;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -375,9 +378,10 @@ In v22.2, use the following CSS rules:
     visibility: hidden;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide "No data to display" message
+### Hide "No data to display" Message
 
 In v22.1, use the following CSS rules:
 
@@ -387,6 +391,7 @@ In v22.1, use the following CSS rules:
 }
 
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -395,9 +400,10 @@ In v22.2, use the following CSS rules:
 }
 
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide vertical lines
+### Hide Vertical Lines
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -409,6 +415,7 @@ In both v22.1 and v22.2, use the same razor code:
     </Columns>
 </DxGrid>
   ```
+  
 In v22.1, use the following CSS rules:
 
 ```css
@@ -423,6 +430,7 @@ In v22.1, use the following CSS rules:
         border-left: 0px;
     }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -440,18 +448,18 @@ In v22.2, use the following CSS rules:
     }
 
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide header row
+### Hide Header Row
 
-To hide header row (universal approach), handle the CustomizeElement event:
+To hide header row (universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
     .hiddenHeader {
         display :none;
     }
-
 </style>
 
 <DxCheckBox @bind-Checked="ShowHeader">Show Header</DxCheckBox>
@@ -508,6 +516,7 @@ You can achieve the same result with CSS rules. In both v22.1 and v22.2, use the
 ```
 
 In v22.1, use the following CSS rules:
+
 ```css
 .hiddenHeader .dxbs-grid-header-content {
     display: none;
@@ -518,7 +527,9 @@ In v22.1, use the following CSS rules:
     border-bottom: none !important;
 }
 ```
+
 In v22.2, use the following CSS rules:
+
 ```css
 .hiddenHeader .dxbl-grid-header-content {
     display: none;
@@ -532,7 +543,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Place a scrollable DxGrid into DxPopup
+### Place a Scrollable DxGrid into DxPopup
 
 In v22.2, use the following code:
 
@@ -572,11 +583,12 @@ In v22.2, use the following code:
     }
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Prevent caption wrapping
+### Prevent Caption Wrapping
 
-To prevent caption wrapping (universal approach), handle the CustomizeElement event:
+To prevent caption wrapping (universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -612,9 +624,11 @@ else {
     }
 }
 ```
+
 You can achieve the same result with the following CSS rules.
 
 In v22.1, use the following CSS rules:
+
 ```css
 .myGrid .dxbs-grid-header-content {
     overflow: hidden;
@@ -622,7 +636,9 @@ In v22.1, use the following CSS rules:
     white-space: nowrap;
 }
 ```
+
 In v22.2, use the following CSS rules:
+
 ```css
 .myGrid .dxbl-grid-header-content {
     overflow: hidden;
@@ -631,11 +647,10 @@ In v22.2, use the following CSS rules:
 }
 ```
 
-
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Remove paddings for a detail grid
+### Remove Paddings for a Detail Grid
 
 In v22.1, use the following CSS rules:
 
@@ -645,6 +660,7 @@ In v22.1, use the following CSS rules:
     padding-bottom: 0px;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -653,12 +669,13 @@ In v22.2, use the following CSS rules:
     padding-bottom: 0px;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
 ## DxFormLayout
 
-### Change the location and style of a Form Layout item
+### Change the Location and Style of a Form Layout Item
 
 In old versions, it was necessary to both use a custom label and to hide the built-in label:
 
@@ -674,6 +691,7 @@ In old versions, it was necessary to both use a custom label and to hide the bui
     <DxTextBox @bind-Text="@Name" />
 </DxFormLayoutItem>
 ```
+
 In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties instead (available for Form Layout items):
 
 ```cs
@@ -687,10 +705,11 @@ In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties inste
     <DxTextBox @bind-Text="@Name" />
 </DxFormLayoutItem>
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change item captions
+### Change Item Captions
 
 In v22.1, use the following CSS rules:
 
@@ -699,6 +718,7 @@ In v22.1, use the following CSS rules:
     text-align: right;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -706,6 +726,7 @@ In v22.2, use the following CSS rules:
     text-align: right;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxToolbar
