@@ -5,7 +5,7 @@
 
 # DevExpress Blazor Components - How to Update CSS Styles to v22.2
 
-This document summarizes the most often cases when you should use our private CSS selectors to apply a style to an element.
+This document summarizes the most common scenarios in which you should use our private CSS selectors to apply a style to an element.
  
 You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.1 or prior, and copy the new equivalent of this selector.
 
