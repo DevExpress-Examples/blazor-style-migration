@@ -17,6 +17,7 @@
     - [Hide "No data to display" message](#hide-no-data-to-display-message)
     - [Hide vertical lines](#hide-vertical-lines)
     - [Hide header row](#hide-header-row)
+    - [Hilight a row on hover](#hilight-a-row-on-hover)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
     - [Prevent caption wrapping](#prevent-caption-wrapping)
     - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
@@ -532,6 +533,44 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
+### Hilight a row on hover
+
+To highlight a row on hover in v22.2, handle the CustomizeElement event:
+
+```cs
+<style>
+    .highlighted-item:hover, .highlighted-item:hover > td {
+        background-color: yellow;
+    }
+</style>
+
+@if (forecasts == null) {
+    <p><em>Loading...</em></p>
+}
+else {
+    <DxGrid Data="@forecasts" CssClass="mw-1100" CustomizeElement="OnCustomizeElement">
+        <Columns>
+            <DxGridDataColumn Caption="Date" FieldName="Date" />
+            <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+        </Columns>
+    </DxGrid>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+    void OnCustomizeElement(GridCustomizeElementEventArgs e) {
+        if(e.ElementType == GridElementType.DataRow)
+            e.CssClass = "highlighted-item";
+    }
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
 ### Place a scrollable DxGrid into DxPopup
 
 In v22.2, use the following code:
