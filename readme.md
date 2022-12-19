@@ -119,7 +119,7 @@ In v22.2, use the following CSS rule:
 
 ### Color alternate rows
 
-To color alternate rows (universal approach), handle the CustomizeElement event:
+To color alternate rows (the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -445,7 +445,7 @@ In v22.2, use the following CSS rules:
 
 ### Hide the header row
 
-To hide the header row (using the universal approach), handle the CustomizeElement event:
+To hide the header row (using the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -615,7 +615,7 @@ In v22.2, use the following code:
 
 ### Prevent caption wrapping
 
-To prevent caption wrapping (universal approach), handle the CustomizeElement event:
+To prevent caption wrapping (universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
