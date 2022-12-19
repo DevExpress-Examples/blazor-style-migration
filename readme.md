@@ -16,7 +16,7 @@
     - [Hide the skeleton element](#hide-the-skeleton-element)
     - [Hide "No data to display" message](#hide-no-data-to-display-message)
     - [Hide vertical lines](#hide-vertical-lines)
-    - [Hide header row](#hide-header-row)
+    - [Hide the header row](#hide-the-header-row)
     - [Hilight a row on hover](#hilight-a-row-on-hover)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
     - [Prevent caption wrapping](#prevent-caption-wrapping)
@@ -443,9 +443,9 @@ In v22.2, use the following CSS rules:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide header row
+### Hide the header row
 
-To hide header row (universal approach), handle the CustomizeElement event:
+To hide the header row (using the universal approach), handle the CustomizeElement event:
 
 ```cs
 <style>
