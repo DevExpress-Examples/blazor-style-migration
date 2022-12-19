@@ -49,7 +49,7 @@
       - [Highlight a week on mouse hover](#highlight-a-week-on-mouse-hover)
       - [Hide the drop down button](#hide-the-drop-down-button)
       - [Localize the Time section scroll picker's text](#localize-the-time-section-scroll-pickers-text)
-    - [DxCalender](#dxcalender)
+    - [DxCalendar](#dxcalendar)
       - [Change font color of weekends](#change-font-color-of-weekends)
       - [Hide week numbers](#hide-week-numbers)
       - [Hide the footer](#hide-the-footer)
@@ -1415,7 +1415,7 @@ function updateRoller(hour, minute, second) {
 [Return to the table of contents.](#thetableofcontents)
 
 
-### DxCalender
+### DxCalendar
 
 #### Change font color of weekends
 
