@@ -116,7 +116,7 @@ In v22.2, use the following CSS rules:
 
 ### Color Alternate Rows
 
-To color alternate rows (universal approach), handle the CustomizeElement event:
+To color alternate rows (using the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
