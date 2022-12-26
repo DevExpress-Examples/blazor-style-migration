@@ -30,7 +30,8 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Hide the skeleton element](#hide-the-skeleton-element)
     - [Hide "No data to display" message](#hide-no-data-to-display-message)
     - [Hide vertical lines](#hide-vertical-lines)
-    - [Hide header row](#hide-header-row)
+    - [Hide the header row](#hide-the-header-row)
+    - [Hilight a row on hover](#hilight-a-row-on-hover)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
     - [Prevent caption wrapping](#prevent-caption-wrapping)
     - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
@@ -62,7 +63,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
       - [Highlight a week on mouse hover](#highlight-a-week-on-mouse-hover)
       - [Hide the drop down button](#hide-the-drop-down-button)
       - [Localize the Time section scroll picker's text](#localize-the-time-section-scroll-pickers-text)
-    - [DxCalender](#dxcalender)
+    - [DxCalendar](#dxcalendar)
       - [Change font color of weekends](#change-font-color-of-weekends)
       - [Hide week numbers](#hide-week-numbers)
       - [Hide the footer](#hide-the-footer)
@@ -451,9 +452,9 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide Header Row
+### Hide the Header Row
 
-To hide header row (universal technique), handle the CustomizeElement event:
+To hide the header row (universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -542,6 +543,47 @@ In v22.2, use the following CSS rules:
 ```
 
 [Return to the table of contents.](#thetableofcontents)
+
+
+### Hilight a Row on Hover
+
+To highlight a row on hover in v22.2, handle the CustomizeElement event:
+
+```cs
+<style>
+    .highlighted-item:hover, .highlighted-item:hover > td {
+        background-color: yellow;
+    }
+</style>
+
+@if (forecasts == null) {
+    <p><em>Loading...</em></p>
+}
+else {
+    <DxGrid Data="@forecasts" CssClass="mw-1100" CustomizeElement="OnCustomizeElement">
+        <Columns>
+            <DxGridDataColumn Caption="Date" FieldName="Date" />
+            <DxGridDataColumn Caption="Temperature" FieldName="TemperatureF" />
+        </Columns>
+    </DxGrid>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync() {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+    void OnCustomizeElement(GridCustomizeElementEventArgs e) {
+        if(e.ElementType == GridElementType.DataRow)
+            e.CssClass = "highlighted-item";
+    }
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
 
 ### Place a Scrollable DxGrid into DxPopup
 
