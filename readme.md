@@ -1675,7 +1675,7 @@ In v22.1, use the following CSS rules:
 }
 ```
 
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .customPopup .dxbl-popup-header-button .dxbl-image {
