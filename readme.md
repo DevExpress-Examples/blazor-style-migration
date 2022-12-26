@@ -953,7 +953,7 @@ In v22.1, editors occupy 100% of the container width in the following markup:
 </div>
 ```
 
-In v22.2 it's necessary to set the 100% width to each editor:
+In v22.2, it's necessary to set the width of each editor to 100%:
 
 ```cs
 <style>
