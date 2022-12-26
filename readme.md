@@ -1205,7 +1205,7 @@ In v22.2, use the following code:
 
 #### Modify "No data to display" Message
 
-In v19.2 use the following code:
+In v19.2, use the following code:
 
 ```cs
 <style>
