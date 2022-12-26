@@ -940,7 +940,7 @@ In v22.2 use the following code:
 
 ### Blazor Editors inside the "input-group" Container
 
-In v22.1 editors occupy the 100% width of the container in the following markup:
+In v22.1, editors occupy 100% of the container width in the following markup:
 
 ```cs
 <div class="input-group">
