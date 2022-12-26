@@ -1427,7 +1427,7 @@ function updateRoller(hour, minute, second) {
 [Return to the table of contents.](#thetableofcontents)
 
 
-### DxCalender
+### DxCalendar
 
 #### Change Font Color of Weekends
 
