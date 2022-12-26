@@ -1659,7 +1659,7 @@ In both v22.1 and v22.2, use the same razor code:
 </DxPopup>
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .customPopup .dxbs-popup-header-button{
