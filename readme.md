@@ -1185,7 +1185,7 @@ In v22.2, use the following code:
 
 #### Change Drop-Down Text Font Size
 
-In v22.1 use the following code:
+In v22.1, use the following code:
 
 ```css
  ul.dxbs-dropdown-area li {
