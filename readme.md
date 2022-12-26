@@ -588,7 +588,7 @@ In v22.2, use the following code:
 
 ### Prevent Caption Wrapping
 
-To prevent caption wrapping (universal technique), handle the CustomizeElement event:
+To prevent caption wrapping (using the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
