@@ -2,9 +2,23 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1130491)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
+
+# DevExpress Blazor Components - How to Update CSS Styles to v22.2
+
+This document summarizes the most common scenarios in which you should use our private CSS selectors to apply a style to an element.
+ 
+You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.1 or prior, and copy the new equivalent of this selector.
+
+If you did not manage to find your scenario in this document, you can inspect a component render and create a new CSS selector as described in the following articles: 
+
+* [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
+* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
+
+Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
+
 <a name="thetableofcontents"></a>
-- [How to update CSS styles to v22.2](#how-to-update-css-styles-to-v222)
-- [Most common customizations](#most-common-customizations)
+## Table of Contents
+
   - [DxGrid](#dxgrid)
     - [Align header captions](#align-header-captions)
     - [Color alternate rows](#color-alternate-rows)
@@ -59,26 +73,9 @@
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
 
-# How to update CSS styles to v22.2
-
-In the [Most common customizations](#most-common-customizations) section of this repository, we summarized the most often cases when our users should use our private CSS selectors to apply a style to an element. 
- 
-Also, you can press Ctrl+F and search for a private CSS selector that you used in a previous version. This will help you find a selector that you used in v22.1 or prior, and copy the new equivalent of this selector.
-
-If you didn't manage to find your scenario in this document, you can create a new CSS selector by inspecting a component render as described in the following articles: 
-
-[View and change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
-[How to implement CSS-related solutions for DevExpress components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
-
-Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
-
-[Return to the table of contents.](#thetableofcontents)
-
-# Most common customizations
-
 ## DxGrid
 
-### Align header captions
+### Align Header Captions
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -102,6 +99,7 @@ In both v22.1 and v22.2, use the same razor code:
 ```
 
 In v22.1, use the following CSS rules:
+
 ```css
 .myGrid .dxbs-grid-header-content {
     justify-content: right;
@@ -116,9 +114,9 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Color alternate rows
+### Color Alternate Rows
 
-To color alternate rows (universal approach), handle the CustomizeElement event:
+To color alternate rows (using the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -169,7 +167,7 @@ If your DxGrid does not display master-detail relationships and does not use the
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change the default "No data to display" text
+### Change the Default "No data to display" Text
 
 In v22.1, use the following CSS rules:
 
@@ -196,7 +194,7 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change the header cells' background color
+### Change the Header Cells' Background Color
 
 In v22.1, use the following CSS rules:
 
@@ -205,6 +203,7 @@ In v22.1, use the following CSS rules:
     background-color: aqua !important
 }
 ```
+
 In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
 
 ```cs
@@ -215,7 +214,7 @@ void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Change selected row background color
+### Change Selected Row Background Color
 
 In v22.1, use the following CSS rules:
 
@@ -233,9 +232,9 @@ In v22.2, use the following CSS rules:
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Focus an editor inside the edit form
+### Focus an Editor Inside the Edit Form
 
-To focus an editor inside the grid edit form in v22.1 and earlier, it was necessary to use the JavaScript input.focus method:
+To focus an editor inside the grid edit form in v22.1 and earlier, use the JavaScript input.focus method:
 
 ```js
 function focusFirstEditor() {
@@ -245,7 +244,8 @@ function focusFirstEditor() {
     }, 1000);
 }
 ```
-In v22.2, we automatically focus the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
+
+In v22.2, the DxGrid automatically focuses the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
 
 ```cs
 @page "/grid"
@@ -290,7 +290,7 @@ In v22.2, we automatically focus the first editor. If you wish to focus a differ
 ```
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide the expand/collapse button for detail rows
+### Hide the Expand/Collapse Button for Detail Rows
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -317,6 +317,7 @@ void OnCustomizeElement(GridCustomizeElementEventArgs args)
     }
 }
 ```
+
 In v22.1, use the following CSS rules:
 
 ```css
@@ -336,7 +337,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide the skeleton element
+### Hide the Skeleton Element
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -361,6 +362,7 @@ In both v22.1 and v22.2, use the same razor code:
     }
 }
   ```
+  
 In v22.1, use the following CSS rules:
 
 ```css
@@ -368,6 +370,7 @@ In v22.1, use the following CSS rules:
     visibility: hidden;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -375,9 +378,10 @@ In v22.2, use the following CSS rules:
     visibility: hidden;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide "No data to display" message
+### Hide "No data to display" Message
 
 In v22.1, use the following CSS rules:
 
@@ -387,6 +391,7 @@ In v22.1, use the following CSS rules:
 }
 
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -395,9 +400,10 @@ In v22.2, use the following CSS rules:
 }
 
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide vertical lines
+### Hide Vertical Lines
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -409,6 +415,7 @@ In both v22.1 and v22.2, use the same razor code:
     </Columns>
 </DxGrid>
   ```
+  
 In v22.1, use the following CSS rules:
 
 ```css
@@ -423,6 +430,7 @@ In v22.1, use the following CSS rules:
         border-left: 0px;
     }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -440,18 +448,18 @@ In v22.2, use the following CSS rules:
     }
 
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide header row
+### Hide Header Row
 
-To hide header row (universal approach), handle the CustomizeElement event:
+To hide header row (universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
     .hiddenHeader {
         display :none;
     }
-
 </style>
 
 <DxCheckBox @bind-Checked="ShowHeader">Show Header</DxCheckBox>
@@ -508,6 +516,7 @@ You can achieve the same result with CSS rules. In both v22.1 and v22.2, use the
 ```
 
 In v22.1, use the following CSS rules:
+
 ```css
 .hiddenHeader .dxbs-grid-header-content {
     display: none;
@@ -518,7 +527,9 @@ In v22.1, use the following CSS rules:
     border-bottom: none !important;
 }
 ```
+
 In v22.2, use the following CSS rules:
+
 ```css
 .hiddenHeader .dxbl-grid-header-content {
     display: none;
@@ -532,7 +543,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-### Place a scrollable DxGrid into DxPopup
+### Place a Scrollable DxGrid into DxPopup
 
 In v22.2, use the following code:
 
@@ -572,11 +583,12 @@ In v22.2, use the following code:
     }
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Prevent caption wrapping
+### Prevent Caption Wrapping
 
-To prevent caption wrapping (universal approach), handle the CustomizeElement event:
+To prevent caption wrapping (using the universal technique), handle the CustomizeElement event:
 
 ```cs
 <style>
@@ -612,9 +624,11 @@ else {
     }
 }
 ```
+
 You can achieve the same result with the following CSS rules.
 
 In v22.1, use the following CSS rules:
+
 ```css
 .myGrid .dxbs-grid-header-content {
     overflow: hidden;
@@ -622,7 +636,9 @@ In v22.1, use the following CSS rules:
     white-space: nowrap;
 }
 ```
+
 In v22.2, use the following CSS rules:
+
 ```css
 .myGrid .dxbl-grid-header-content {
     overflow: hidden;
@@ -631,11 +647,10 @@ In v22.2, use the following CSS rules:
 }
 ```
 
-
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Remove paddings for a detail grid
+### Remove Paddings for a Detail Grid
 
 In v22.1, use the following CSS rules:
 
@@ -645,6 +660,7 @@ In v22.1, use the following CSS rules:
     padding-bottom: 0px;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -653,12 +669,13 @@ In v22.2, use the following CSS rules:
     padding-bottom: 0px;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
 ## DxFormLayout
 
-### Change the location and style of a Form Layout item
+### Change the Location and Style of a Form Layout Item
 
 In old versions, it was necessary to both use a custom label and to hide the built-in label:
 
@@ -674,6 +691,7 @@ In old versions, it was necessary to both use a custom label and to hide the bui
     <DxTextBox @bind-Text="@Name" />
 </DxFormLayoutItem>
 ```
+
 In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties instead (available for Form Layout items):
 
 ```cs
@@ -687,10 +705,11 @@ In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties inste
     <DxTextBox @bind-Text="@Name" />
 </DxFormLayoutItem>
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Change item captions
+### Change Item Captions
 
 In v22.1, use the following CSS rules:
 
@@ -699,6 +718,7 @@ In v22.1, use the following CSS rules:
     text-align: right;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -706,11 +726,12 @@ In v22.2, use the following CSS rules:
     text-align: right;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxToolbar
 
-### Change title text color
+### Change Title Text Color
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -727,6 +748,7 @@ In v22.1, use the following CSS rules:
     color:red!important;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -734,10 +756,11 @@ In v22.2, use the following CSS rules:
     color:red!important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
-### Center toolbar item content
+### Center Toolbar Item Content
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -771,6 +794,7 @@ In both v22.1 and v22.2, use the same razor code:
     public string SearchString { get; set; } = "";
 }
   ```
+  
 In v20.1, use the following CSS rules:
 
 ```css
@@ -779,56 +803,60 @@ In v20.1, use the following CSS rules:
     width: 100%;
 }
 
-    .btn-group.dxbs-toolbar-group:nth-child(2) .dx-checkbox {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.btn-group.dxbs-toolbar-group:nth-child(2) .dx-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
-    .dxbl-btn-group.dxbl-toolbar-group:nth-child(2) {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+.dxbl-btn-group.dxbl-toolbar-group:nth-child(2) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxTabs
 
-### Create rounded tabs
+### Create Rounded Tabs
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxTabs CssClass="MyTabsCss">
-  <DxTab Text="Home" CssClass="MyTabCss"></DxTab>
-  <DxTab Text="Products" CssClass="MyTabCss"></DxTab>
-  <DxTab Text="Support" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Home" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Products" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Support" CssClass="MyTabCss"></DxTab>
 </DxTabs>
 ```
 
 In v22.1, use the follwing CSS rules:
+
 ```css
 .MyTabsCss > ul {
-        border-bottom-width: 0px;
-    }
-    .MyTabCss > a {
-        border-radius: 20px !important;
-        border: 1px solid white !important;
-    }
-
-        .MyTabCss > a:hover {
-            border-color: #e9ecef !important;
-        }
-
-        .MyTabCss > a.active {
-            border-color: dodgerblue !important;
-            background-color: dodgerblue !important;
-        }
+    border-bottom-width: 0px;
+}
+.MyTabCss > a {
+    border-radius: 20px !important;
+    border: 1px solid white !important;
+}
+.MyTabCss > a:hover {
+    border-color: #e9ecef !important;
+}
+.MyTabCss > a.active {
+    border-color: dodgerblue !important;
+    background-color: dodgerblue !important;
+}
 ```
+
 In v22.2, use the follwing CSS rules:
+
 ```css
 .MyTabsCss {
     border-bottom-width:0px;
@@ -837,24 +865,24 @@ In v22.2, use the follwing CSS rules:
     border-radius: 20px !important;
     border: 1px solid white !important;
 }
+.MyTabCss:hover {
+    border-color: #e9ecef !important;
+}
 
-    .MyTabCss:hover {
-        border-color: #e9ecef !important;
-    }
-
-    .MyTabCss.dxbl-active {
-        border-color: dodgerblue !important;
-        background-color: dodgerblue !important;
-    }
-    .MyTabCss.dxbl-active:after {
-        background-color:transparent!important;
-    }
+.MyTabCss.dxbl-active {
+    border-color: dodgerblue !important;
+    background-color: dodgerblue !important;
+}
+.MyTabCss.dxbl-active:after {
+    background-color:transparent!important;
+}
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxScheduler
 
-### Change edit form width
+### Change Edit Form Width
 
 In v22.1, use the following CSS rules:
 
@@ -864,6 +892,7 @@ In v22.1, use the following CSS rules:
     max-width: 800px!important;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -872,12 +901,15 @@ In v22.2, use the following CSS rules:
     max-width: 800px!important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxEditors
 
-### Modify the Clear button
-In v22.1 use the following code:
+### Modify the Clear Button
+
+In v22.1, use the following code:
+
 ```cs
 <style type="text/css">
     .my-textbox .dxbs-editor-clear-btn {
@@ -889,7 +921,9 @@ In v22.1 use the following code:
     CssClass="my-textbox"
     ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"></DxTextBox>
 ```
-In v22.2 use the following code:
+
+In v22.2, use the following code:
+
 ```cs
 <style type="text/css">
     .my-textbox .dxbl-edit-btn-clear {
@@ -901,10 +935,13 @@ In v22.2 use the following code:
     CssClass="my-textbox"
     ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto"></DxTextBox>
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Blazor Editors inside the "input-group" container
-In v22.1 editors occupy the 100% width of the container in the following markup:
+### Blazor Editors inside the "input-group" Container
+
+In v22.1, editors occupy 100% of the container width in the following markup:
+
 ```cs
 <div class="input-group">
     <DxTextBox ... />
@@ -915,7 +952,9 @@ In v22.1 editors occupy the 100% width of the container in the following markup:
     <DxDateEdit ... />
 </div>
 ```
-In v22.2 it's necessary to set the 100% width to each editor:
+
+In v22.2, it's necessary to set the width of each editor to 100%:
+
 ```cs
 <style>
     .editor-width {
@@ -932,11 +971,12 @@ In v22.2 it's necessary to set the 100% width to each editor:
     <DxDateEdit CssClass="editor-width" ... />
 </div>
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ### DxTextBox 
 
-#### Change the input's text style
+#### Change the Input's Text Style
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -983,7 +1023,7 @@ dxbl-input-editor.title-editor-readonly > input {
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Customize the Clear button's icon
+#### Customize the Clear Button's Icon
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1022,11 +1062,9 @@ In v22.2, use the following CSS rules:
 }
 ```
 
-
 [Return to the table of contents.](#thetableofcontents)
 
-#### Display an icon inside the input element
-
+#### Display an Icon inside the Input Element
 
 In v22.1, use the following CSS rules:
 
@@ -1083,14 +1121,13 @@ In v22.2, use the following CSS rules:
 </div>
 ```
 
-
 [Return to the table of contents.](#thetableofcontents)
 
 ### DxTagBox 
 
-#### Always force tags to start at a new line
+#### Always Force Tags to Start at a New Line
 
-In v22.1 use the following code:
+In v22.1, use the following code:
 
 ```css
 .dxbs-tag,
@@ -1107,14 +1144,16 @@ In v22.2, use the following code:
    width: 100%;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
 ### DxComboBox 
 
-#### Change the height of a drop-down list
+#### Change the Height of a Drop-Down List
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxComboBox Data="@dataSource" @bind-Value="@Value" TextFieldName="Name" ValueFieldName="ID" DropDownCssClass="combo-dropdown">
 </DxComboBox>
@@ -1141,11 +1180,12 @@ In v22.2, use the following code:
         max-height: 500px !important;
     }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Change drop-down text font size
+#### Change Drop-Down Text Font Size
 
-In v22.1 use the following code:
+In v22.1, use the following code:
 
 ```css
  ul.dxbs-dropdown-area li {
@@ -1160,11 +1200,12 @@ In v22.2, use the following code:
        font-size: smaller;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Modify "No data to display" message
+#### Modify "No data to display" Message
 
-In v19.2 use the following code:
+In v19.2, use the following code:
 
 ```cs
 <style>
@@ -1190,26 +1231,27 @@ In v22.2, use the following code:
 
 ```cs
 .myComboBox .dxbl-listbox-empty-data-item {
-        color: transparent;
-        width: 300px;
-        user-select:none;
-    }
+      color: transparent;
+      width: 300px;
+      user-select:none;
+}
 
-  .myComboBox .dxbl-listbox-empty-data-item:before {
-        position: absolute;
-        content: 'Custom text';
-        color: #212529;
-        font: inherit;
-        width: 100%;
-        left: 0;
-    }
+.myComboBox .dxbl-listbox-empty-data-item:before {
+      position: absolute;
+      content: 'Custom text';
+      color: #212529;
+      font: inherit;
+      width: 100%;
+      left: 0;
+  }
 
 <DxComboBox Data="@MyList"   DropDownCssClass="myComboBox" >
 </DxComboBox>
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Hide column headers
+#### Hide Column Headers
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1249,6 +1291,7 @@ In v22.2, use the following code:
     display: none !important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ### DxDateEdit 
@@ -1257,9 +1300,10 @@ Internally, we use DxCalendar in the DxDateEdit popup. As such, when you need to
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Highlight a week on mouse hover
+#### Highlight a Week on Mouse Hover
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxDateEdit @bind-Date="@DateStart" DropDownCssClass="customDateEdit">
 </DxDateEdit>
@@ -1276,6 +1320,7 @@ In v22.1, use the following CSS rule:
     background-color: lightgray;
 }
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
@@ -1283,12 +1328,14 @@ In v22.2, use the following CSS rule:
     background-color: lightgray;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
-#### Hide the drop down button
+#### Hide the Drop-Down Button
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxDateEdit @bind-Date="@DateTimeValue" CssClass="my-date-edit" />
 ```
@@ -1300,6 +1347,7 @@ In v22.1, use the following CSS rule:
     display: none;
 }
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
@@ -1308,9 +1356,10 @@ In v22.2, use the following CSS rule:
 }
 
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Localize the Time section scroll picker's text
+#### Localize the Time Section Scroll Picker's Text
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1328,6 +1377,7 @@ In both v22.1 and v22.2, use the same razor code:
     }
 }
 ```
+
 In v22.1, use the following script:
 
 ```js
@@ -1373,14 +1423,16 @@ function updateRoller(hour, minute, second) {
     }, 700);
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 
-### DxCalender
+### DxCalendar
 
-#### Change font color of weekends
+#### Change Font Color of Weekends
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxCalendar SelectedDate="@DateStart"  CssClass="myCalendarCss"></DxCalendar>
 
@@ -1398,6 +1450,7 @@ In 22.1, use the following CSS rule:
 }
 
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
@@ -1405,11 +1458,13 @@ In v22.2, use the following CSS rule:
     color: black;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Hide week numbers
+#### Hide Week Numbers
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxCalendar CssClass="myClass" SelectedDate="@DateStart"></DxCalendar>
 
@@ -1424,16 +1479,17 @@ In v19.2, use the following CSS rule:
 .myClass .dxbs-calendar td:not(.dxbs-day) {
     display: none;
 }
-
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
-    .myClass .dxbl-calendar-week-number,
-    .myClass .dxbl-calendar-days-of-week th:first-child {
-        display: none;
-    }
+.myClass .dxbl-calendar-week-number,
+.myClass .dxbl-calendar-days-of-week th:first-child {
+    display: none;
+}
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 #### Hide the footer
@@ -1456,6 +1512,7 @@ In v22.1, use the following CSS rule:
 
 
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
@@ -1463,11 +1520,13 @@ In v22.2, use the following CSS rule:
     display: none;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-#### Hide the footer's Today button
+#### Hide the Footer's Today Button
 
 In both v22.1 and v22.2, use the same razor code:
+
 ```cs
 <DxCalendar SelectedDate="@DateStart" CssClass="customCalendar"></DxCalendar>
 
@@ -1482,9 +1541,8 @@ In v22.1, use the following CSS rule:
 .customCalendar .dxbs-calendar-footer > button:first-child {
     display: none;
 }
-
-
 ```
+
 In v22.2, use the following CSS rule:
 
 ```css
@@ -1492,11 +1550,12 @@ In v22.2, use the following CSS rule:
     display: none;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
 ## DxPopup
 
-### Adjust popup size and position on the page
+### Adjust Popup Size and Position on the Page
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1523,6 +1582,7 @@ In v22.1, use the following CSS rules:
     height: 100% !important;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -1538,9 +1598,10 @@ In v22.2, use the following CSS rules:
     height: 100% !important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Customize popup size and position
+### Customize Popup Size and Position
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1567,6 +1628,7 @@ In v22.1, use the following CSS rules:
     height: 100% !important;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -1582,11 +1644,10 @@ In v22.2, use the following CSS rules:
     height: 100% !important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-
-
-### Customize the Close header's button icon
+### Customize the Close Header's Button Icon
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1598,7 +1659,8 @@ In both v22.1 and v22.2, use the same razor code:
 </DxPopup>
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
+
 ```css
 .customPopup .dxbs-popup-header-button{
     content: "icn";
@@ -1613,7 +1675,8 @@ In v22.1, use the following CSS rule:
 }
 ```
 
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
+
 ```css
 .customPopup .dxbl-popup-header-button .dxbl-image {
     content: "icn";
@@ -1624,9 +1687,10 @@ In v22.2, use the following CSS rule:
     background-size: contain;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
 
-### Hide the modal background
+### Hide the Modal Background
 
 In both v22.1 and v22.2, use the same razor code:
 
@@ -1651,6 +1715,7 @@ In v22.1, use the following CSS rules:
     display: none!important;
 }
 ```
+
 In v22.2, use the following CSS rules:
 
 ```css
@@ -1658,4 +1723,5 @@ In v22.2, use the following CSS rules:
     display: none!important;
 }
 ```
+
 [Return to the table of contents.](#thetableofcontents)
