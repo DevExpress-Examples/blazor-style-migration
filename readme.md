@@ -102,13 +102,13 @@ In both v22.1 and v22.2, use the same razor code:
 }
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 ```css
 .myGrid .dxbs-grid-header-content {
     justify-content: right;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 ```css
 .myGrid .dxbl-grid-header-content {
     justify-content: right;
@@ -199,7 +199,7 @@ In v22.2, use the following CSS rules:
 
 ### Change the header cells' background color
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-grid-header:nth-child(1){
@@ -218,14 +218,14 @@ void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
 
 ### Change selected row background color
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-grid-table {
     --dx-grid-selection-color: blue;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-grid {
@@ -318,7 +318,7 @@ void OnCustomizeElement(GridCustomizeElementEventArgs args)
     }
 }
 ```
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .hideDetailButton .dxbs-grid-expand-button-cell button {
@@ -326,7 +326,7 @@ In v22.1, use the following CSS rule:
 }
 ```
 
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .hideDetailButton .dxbl-grid-expand-button-cell .dxbl-grid-expand-button {
@@ -362,14 +362,14 @@ In both v22.1 and v22.2, use the same razor code:
     }
 }
   ```
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-grid-skeleton-content {
     visibility: hidden;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-grid-skeleton-content {
@@ -380,7 +380,7 @@ In v22.2, use the following CSS rule:
 
 ### Hide "No data to display" message
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-grid-empty-data{
@@ -388,7 +388,7 @@ In v22.1, use the following CSS rule:
 }
 
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-grid-empty-data{
@@ -653,7 +653,7 @@ else {
 ```
 You can achieve the same result with the following CSS rules.
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 ```css
 .myGrid .dxbs-grid-header-content {
     overflow: hidden;
@@ -661,7 +661,7 @@ In v22.1, use the following CSS rule:
     white-space: nowrap;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 ```css
 .myGrid .dxbl-grid-header-content {
     overflow: hidden;
@@ -676,7 +676,7 @@ In v22.2, use the following CSS rule:
 
 ### Remove paddings for a detail grid
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-grid .dxbs-grid-detail-cell {
@@ -684,7 +684,7 @@ In v22.1, use the following CSS rule:
     padding-bottom: 0px;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-grid .dxbl-grid-table .dxbl-grid-detail-cell {
@@ -731,14 +731,14 @@ In v22.1 and v22.2, use the CaptionCssClass and CaptionPosition properties inste
 
 ### Change item captions
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-fl-cpt {
     text-align: right;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-fl-cpt {
@@ -759,14 +759,14 @@ In both v22.1 and v22.2, use the same razor code:
 </DxToolbar>
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .myClass .dxbs-ta-title{
     color:red!important;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .myClass .dxbl-toolbar-title{
@@ -895,7 +895,7 @@ In v22.2, use the follwing CSS rules:
 
 ### Change edit form width
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .dxbs-appointment-edit-dialog {
@@ -903,7 +903,7 @@ In v22.1, use the following CSS rule:
     max-width: 800px!important;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbs-apt-edit-dialog {
@@ -1067,7 +1067,7 @@ In v22.2, use the following CSS rules:
 #### Display an icon inside the input element
 
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```cs
 <style>
@@ -1103,7 +1103,7 @@ In v22.1, use the following CSS rule:
 </div>
 ```
 
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```cs
 <style>
@@ -1547,7 +1547,7 @@ In both v22.1 and v22.2, use the same razor code:
 </DxPopup>
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .DashboardModal.modal-dialog.dxbs-popup {
@@ -1562,7 +1562,7 @@ In v22.1, use the following CSS rule:
     height: 100% !important;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .DashboardModal.modal-dialog.dxbs-popup {
@@ -1591,7 +1591,7 @@ In both v22.1 and v22.2, use the same razor code:
 </DxPopup>
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .DashboardModal.modal-dialog.dxbs-popup {
@@ -1606,7 +1606,7 @@ In v22.1, use the following CSS rule:
     height: 100% !important;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .DashboardModal.modal-dialog.dxbs-popup {
@@ -1683,14 +1683,14 @@ In both v22.1 and v22.2, use the same razor code:
 }
 ```
 
-In v22.1, use the following CSS rule:
+In v22.1, use the following CSS rules:
 
 ```css
 .modal-backdrop.dxbs-modal-back {
     display: none!important;
 }
 ```
-In v22.2, use the following CSS rule:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-modal-back {
