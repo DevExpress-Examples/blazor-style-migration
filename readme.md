@@ -908,7 +908,7 @@ In v22.2, use the following CSS rules:
 
 ### Modify the Clear Button
 
-In v22.1 use the following code:
+In v22.1, use the following code:
 
 ```cs
 <style type="text/css">
