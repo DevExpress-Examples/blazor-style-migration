@@ -1127,7 +1127,7 @@ In v22.2, use the following CSS rules:
 
 #### Always Force Tags to Start at a New Line
 
-In v22.1 use the following code:
+In v22.1, use the following code:
 
 ```css
 .dxbs-tag,
