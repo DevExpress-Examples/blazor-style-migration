@@ -19,6 +19,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
 <a name="thetableofcontents"></a>
 ## Table of Contents
 
+- [Revert Changes in v22.2](#revert-changes-in-v222)
   - [DxGrid](#dxgrid)
     - [Align header captions](#align-header-captions)
     - [Color alternate rows](#color-alternate-rows)
@@ -73,6 +74,23 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize popup size and position](#customize-popup-size-and-position)
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
+- [Revert Changes in v23.1](#revert-changes-in-v231)
+  - [DxAccordion](#dxaccordion)
+    - [Modify background color of a selected item](#modify-background-color-of-a-selected-item)
+    - [Change font weight in root items](#change-font-weight-in-root-items)
+    - [Change font size in nested items](#change-font-size-in-nested-items)
+    - [Remove item borders](#remove-item-borders)
+  - [DxContextMenu](#dxcontextmenu)
+    - [Add a Scroll Bar](#add-a-scroll-bar)
+  - [DxMenu](#dxmenu)
+  - [DxTreeView](#dxtreeview)
+    - [Display filter panel at the component bottom](#display-filter-panel-at-the-component-bottom)
+    - [Apply custom highlighting to filter results](#apply-custom-highlighting-to-filter-results)
+    - [Customize badge appearance](#customize-badge-appearance)
+    - [Achieve NavLinkMatch.All behavior](#achieve-navlinkmatchall-behavior)
+    - [Customize item container's indents](#customize-item-containers-indents)
+    - [Remove left margin of child nodes](#remove-left-margin-of-child-nodes)
+    - [Display Context Menu for a node](#display-context-menu-for-a-node)
 
 ## Revert Changes in v22.2
 
@@ -1800,7 +1818,7 @@ In v23.1, use the following CSS rules:
 
 #### Change Font Weight in Root Items
 
-In v22.2 use the following CSS rules:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-accordion-group-header {
@@ -1820,7 +1838,7 @@ In v23.1, use the following CSS rules:
 
 #### Change Font Size in Nested Items
 
-In v22.2 use the following CSS rules:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-accordion-group .dxbl-accordion-item-content>.dxbl-accordion-item-text-container>.dxbl-text {
@@ -1840,7 +1858,7 @@ In v23.1, use the following CSS rules:
 
 #### Remove Item Borders
 
-In v22.2 use the following CSS rules:
+In v22.2, use the following CSS rules:
 
 ```css
 .dxbl-group-header {
@@ -1860,8 +1878,227 @@ In v23.1, use the following CSS rules:
 
 ### DxContextMenu
 
+#### Add a Scroll Bar
+
+In v20.2, use the following code:
+
+```cs
+<style>
+    .myScrollMenu.dx-blazor-context-menu.dropdown-menu, .dx-blazor-context-menu-submenu.dropdown-menu {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+</style>
+
+<DxContextMenu @ref="@ContextMenu" CssClass="myScrollMenu">
+```
+
+In v23.1, use the following code:
+
+```cs
+<style>
+    .myScrollMenu.dxbl-context-menu-dropdown {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+</style>
+
+<DxContextMenu @ref="@ContextMenu" CssClass="myScrollMenu">
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+### DxMenu
+
 [Return to the table of contents.](#thetableofcontents)
 
 ### DxTreeView
+
+#### Display Filter Panel at the Component Bottom
+
+In v22.2, use the following code:
+
+```cs
+<style>
+    .treeview {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .treeview ul.nav-pills {
+        order: 1;
+    }
+
+    .treeview .dxbl-navigation-filter {
+        order: 2;
+    }
+</style>
+
+<DxTreeView ShowFilterPanel="true" CssClass="treeview">...</DxTreeView>
+```
+
+In v23.1, use the following code:
+
+```cs
+<style>
+    .treeview .dxbl-navigation-filter {
+        order: 1;
+    }
+</style>
+
+<DxTreeView ShowFilterPanel="true" CssClass="treeview">...</DxTreeView>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Apply Custom Highlighting to Filter Results
+
+In v22.1, use the following code:
+
+```cs
+<DxTreeView>
+    <NodeTextTemplate>
+        <span>
+            @{
+                var text = context.Text;
+                if (!context.FilterInfo.IsApplied) {
+                    @text
+                } else {
+                    var filterValue = context.FilterInfo.Value;
+                    var res = Regex.Replace(text, filterValue, $"<mark>$&</mark>", RegexOptions.IgnoreCase);
+                    @((MarkupString)res)
+                }
+            }
+        </span>
+    </NodeTextTemplate>
+</DxTreeView>
+```
+
+
+In v23.1, use the following code:
+
+```cs
+<style>
+    mark {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+</style>
+
+<DxTreeView>
+    <NodeTextTemplate>
+        <span>
+            @{
+                var text = context.Text;
+                if (!context.FilterInfo.IsApplied) {
+                    @text
+                } else {
+                    var filterValue = context.FilterInfo.Value;
+                    var res = Regex.Replace(text, filterValue, $"<mark>$&</mark>", RegexOptions.IgnoreCase);
+                    @((MarkupString)res)
+                }
+            }
+        </span>
+    </NodeTextTemplate>
+</DxTreeView>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Customize Badge Appearance
+
+In v21.2, use the `badge` class:
+
+```css
+.my-node a .badge {
+    background-color: blue !important;
+}
+```
+
+In v23.1, use the `dxbl-badge` class:
+
+```css
+.my-node .dxbl-badge {
+    background-color: blue !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Achieve NavLinkMatch.All Behavior
+
+In v20.2, use the following code:
+
+```cs
+<NodeTemplate>
+    <NavLink Match="@(string.IsNullOrEmpty(context.NavigateUrl) ? NavLinkMatch.All : NavLinkMatch.Prefix)" class="nav-link" href="@context.NavigateUrl">@context.Text</NavLink>
+</NodeTemplate>
+```
+
+In v23.1, you can remove the `NodeTemplate` and set [DxTreeView.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeView.UrlMatchMode) or [DxTreeViewNode.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeViewNode.UrlMatchMode) property to `Exact`.
+
+```cs
+<DxTreeView AllowSelectNodes="true" UrlMatchMode="NavigationUrlMatchMode.Exact">
+    <Nodes>
+        <DxTreeViewNode NavigateUrl="./" Text="Overview" UrlMatchMode="NavigationUrlMatchMode.Exact"></DxTreeViewNode>
+        <DxTreeViewNode NavigateUrl="grid" Text="Grid"></DxTreeViewNode>
+    </Nodes>
+</DxTreeView>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Customize Item Container's Indents
+
+In 21.2, use the following CSS rules:
+
+```css
+.my-custom-treeview div.dxbs-tree-tmpl + ul.nav {
+    margin: 0.2em 0px 0.2em 40px !important;
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.my-custom-treeview .dxbl-treeview-items-container {
+    margin: 0.2em 0px 0.2em 40px !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Remove Left Margin of Child Nodes
+
+In 21.1, use the following CSS rules:
+
+```css
+.treeview > ul.nav ul.nav {
+    margin-left: unset;
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.treeview {
+    --dxbl-treeview-item-content-indent: unset;
+}
+```
+
+#### Display Context Menu for a Node
+
+In v21.2, use the following CSS rules to display a Context Menu atop the `NodeTextTemplate`:
+
+```css
+.custom-list-class .nav-link {
+    transform: none!important;
+}
+.custom-list-class .nav-link:hover {
+    z-index: 1;
+}
+```
+
+In v23.1, you can remove these classes as we significantly redesigned the layout of our Context Menu. These classes are no longer required.
 
 [Return to the table of contents.](#thetableofcontents)
