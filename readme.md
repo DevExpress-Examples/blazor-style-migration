@@ -9,7 +9,7 @@ This document summarizes the most common scenarios in which you should use our p
  
 You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.2 or prior, and copy the new equivalent of this selector.
 
-If you did not manage to find your scenario in this document, you can inspect a component render and create a new CSS selector as described in the following articles: 
+If you did not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
 
 * [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
 * [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
@@ -565,7 +565,7 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 
-#### Hilight a Row on Hover
+#### Highlight a Row on Hover
 
 To highlight a row on hover in v22.2, handle the CustomizeElement event:
 
@@ -2035,7 +2035,7 @@ In v20.2, use the following code:
 </NodeTemplate>
 ```
 
-In v23.1, you can remove the `NodeTemplate` and set [DxTreeView.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeView.UrlMatchMode) or [DxTreeViewNode.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeViewNode.UrlMatchMode) property to `Exact`.
+In v23.1, you can remove the `NodeTemplate` and set the [DxTreeView.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeView.UrlMatchMode) or [DxTreeViewNode.UrlMatchMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxTreeViewNode.UrlMatchMode) property to `Exact`.
 
 ```cs
 <DxTreeView AllowSelectNodes="true" UrlMatchMode="NavigationUrlMatchMode.Exact">
@@ -2048,9 +2048,9 @@ In v23.1, you can remove the `NodeTemplate` and set [DxTreeView.UrlMatchMode](ht
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Customize Item Container's Indents
+#### Customize Item Container Indents
 
-In 21.2, use the following CSS rules:
+In v21.2, use the following CSS rules:
 
 ```css
 .my-custom-treeview div.dxbs-tree-tmpl + ul.nav {
@@ -2070,7 +2070,7 @@ In v23.1, use the following CSS rules:
 
 #### Remove Left Margin of Child Nodes
 
-In 21.1, use the following CSS rules:
+In v21.1, use the following CSS rules:
 
 ```css
 .treeview > ul.nav ul.nav {
@@ -2088,7 +2088,7 @@ In v23.1, use the following CSS rules:
 
 #### Display Context Menu for a Node
 
-In v21.2, use the following CSS rules to display a Context Menu atop the `NodeTextTemplate`:
+In v21.2, use the following CSS rules to display a Context Menu above the `NodeTextTemplate`:
 
 ```css
 .custom-list-class .nav-link {
