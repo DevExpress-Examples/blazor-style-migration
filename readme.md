@@ -32,7 +32,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Hide "No data to display" message](#hide-no-data-to-display-message)
     - [Hide vertical lines](#hide-vertical-lines)
     - [Hide the header row](#hide-the-header-row)
-    - [Hilight a row on hover](#hilight-a-row-on-hover)
+    - [Highlight a row on hover](#highlight-a-row-on-hover)
     - [Place a scrollable DxGrid into DxPopup](#place-a-scrollable-dxgrid-into-dxpopup)
     - [Prevent caption wrapping](#prevent-caption-wrapping)
     - [Remove paddings for a detail grid](#remove-paddings-for-a-detail-grid)
@@ -225,7 +225,7 @@ In v22.1, use the following CSS rules:
 }
 ```
 
-In v22.2, use the new CustomizeElement event to change the header cells' color instead of adding a custom CSS style:
+In v22.2, use the new CustomizeElement event to change the header cell color instead of adding a custom CSS style:
 
 ```cs
 void Grid_CustomizeElement(GridCustomizeElementEventArgs e) {
@@ -266,7 +266,7 @@ function focusFirstEditor() {
 }
 ```
 
-In v22.2, the DxGrid automatically focuses the first editor. If you wish to focus a different editor, wrap it into the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart"::
+In v22.2, the DxGrid automatically focuses the first editor. If you wish to focus a different editor, wrap it in the CasadingValue component and set the CascadingValue.Name property to "FocusOnEditStart":
 
 ```cs
 @page "/grid"
@@ -898,7 +898,7 @@ In both v22.1 and v22.2, use the same razor code:
 </DxTabs>
 ```
 
-In v22.1, use the follwing CSS rules:
+In v22.1, use the following CSS rules:
 
 ```css
 .MyTabsCss > ul {
@@ -1504,7 +1504,7 @@ In both v22.1 and v22.2, use the same razor code:
 
 ```
 
-In 22.1, use the following CSS rule:
+In v22.1, use the following CSS rule:
 
 ```css
 .myCalendarCss .dxbs-weekend {
