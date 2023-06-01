@@ -12,7 +12,7 @@ You can also press `Ctrl+F` and search for a private CSS selector that you used 
 If you do not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
 
 * [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
-* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
+* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/ticket/details/T632424)
 
 Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
 
