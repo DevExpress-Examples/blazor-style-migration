@@ -1799,17 +1799,14 @@ The following auto-generated customizations of TreeView in the left sidebar have
 ::deep .app-sidebar > .nav-pills > .nav-item:first-of-type {
     padding-top: 1rem;
 }
-
 ::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
     padding-bottom: 1rem;
 }
-
 ::deep .app-sidebar .nav-pills > .nav-item a {
     border-radius: 0px;
     display: flex;
     align-items: center;
 }
-
 ::deep .app-sidebar > .nav-pills > .nav-item > a {
     font-size: 1rem !important;
     font-weight: 600 !important;
@@ -1821,7 +1818,6 @@ The following auto-generated customizations of TreeView in the left sidebar have
 ::deep .app-sidebar > .nav-pills > .nav-item > a:not(.active) {
     background-color: inherit;
 }
-
 @media (max-width: 1199.98px) {
     ::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
         padding-bottom: 0;
@@ -1845,15 +1841,13 @@ In v23.1, use one of the following variants:
     --dxbl-treeview-spacing-x: 0.5rem;
     --dxbl-treeview-spacing-y: 1rem;
 }
-
 ::deep .app-sidebar .my-item > :first-child {
     --dxbl-treeview-font-weight: 600;
 }
-
+/* Use this rule for TreeViews without nested nodes */
 ::deep .app-sidebar .my-item > :only-child:not(.dxbl-treeview-tmpl) > button {
     display: none;
 }
-
 @media (max-width: 1199.98px) {
     ::deep .app-sidebar {
         padding-bottom: 0;
@@ -1877,6 +1871,7 @@ In v23.1, use one of the following variants:
         padding-bottom: 0;
     }
 }
+/* Use this rule for TreeViews without nested nodes */
 ::deep .app-sidebar > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > .dxbl-treeview-items-container > .dxbl-treeview-item > .dxbl-treeview-item-content > .dxbl-btn.dxbl-invisible {
     display: none;
 }
