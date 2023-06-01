@@ -1793,20 +1793,34 @@ In v22.2, use the following CSS rules:
 
 ### Navigation TreeView Customizations in Projects Created with DevExpress Templates
 
-The following auto-generated customizations of TreeView in the left sidebar have no effect in projects created from DevExpress templates prior to 23.1:
+DevExpress templates generate projects that contain a left-side navbar with TreeView. For this TreeView, we specified custom styles to change its default appearance. In v23.1, these styles cannot be applied. 
+In v23.1, do the following to restore the appearance:
 
+1. Assign a CSS class for all nodes in the *NavMenu.razor* file:
+```Razor
+<DxTreeView>
+     <DxTreeViewNode Text="Node1" CssClass="my-item" />
+     <DxTreeViewNode Text="Node2" CssClass="my-item" />
+     @* ... *@
+</DxTreeView>
+```
+
+2.  In the *NavMenu.razor.css* file, remove the following code:
 ```css
 ::deep .app-sidebar > .nav-pills > .nav-item:first-of-type {
     padding-top: 1rem;
 }
+
 ::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
     padding-bottom: 1rem;
 }
+
 ::deep .app-sidebar .nav-pills > .nav-item a {
     border-radius: 0px;
     display: flex;
     align-items: center;
 }
+
 ::deep .app-sidebar > .nav-pills > .nav-item > a {
     font-size: 1rem !important;
     font-weight: 600 !important;
@@ -1818,6 +1832,7 @@ The following auto-generated customizations of TreeView in the left sidebar have
 ::deep .app-sidebar > .nav-pills > .nav-item > a:not(.active) {
     background-color: inherit;
 }
+
 @media (max-width: 1199.98px) {
     ::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
         padding-bottom: 0;
@@ -1825,55 +1840,26 @@ The following auto-generated customizations of TreeView in the left sidebar have
 }
 ```
 
-In v23.1, use one of the following variants:
-
-1. Assign a CSS class for all nodes. In the _NavMenu.razor.css_ file, replace rules that contain the `nav-pills` class with rules that do not use this class.
-
-```cs
-<DxTreeView>
-     <DxTreeViewNode Text="Node1" CssClass="my-item" />
-     <DxTreeViewNode Text="Node2" CssClass="my-item" />
-     @* ... *@
-</DxTreeView>
-
-<style>
+3. In the same file, add the following code:
+```css
 ::deep .app-sidebar {
     --dxbl-treeview-spacing-x: 0.5rem;
     --dxbl-treeview-spacing-y: 1rem;
 }
+
 ::deep .app-sidebar .my-item > :first-child {
     --dxbl-treeview-font-weight: 600;
 }
+
 /* Use this rule for TreeViews without nested nodes */
 ::deep .app-sidebar .my-item > :only-child:not(.dxbl-treeview-tmpl) > button {
     display: none;
 }
+
 @media (max-width: 1199.98px) {
     ::deep .app-sidebar {
         padding-bottom: 0;
     }
-}
-</style>
-```
-
-2. Apply the following CSS rules to TreeView. We do not recommend that you use this approach as these rules heavily rely on the component's structure which may change in future.
-
-```css
-::deep .app-sidebar > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > .dxbl-treeview-items-container > .dxbl-treeview-item > .dxbl-treeview-item-content > .dxbl-treeview-item-container {
-    --dxbl-treeview-font-weight: 600;
-}
-::deep .app-sidebar {
-    --dxbl-treeview-spacing-x: 0.5rem;
-    --dxbl-treeview-spacing-y: 1rem;
-}
-@media (max-width: 1199.98px) {
-    ::deep .app-sidebar {
-        padding-bottom: 0;
-    }
-}
-/* Use this rule for TreeViews without nested nodes */
-::deep .app-sidebar > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > .dxbl-treeview-items-container > .dxbl-treeview-item > .dxbl-treeview-item-content > .dxbl-btn.dxbl-invisible {
-    display: none;
 }
 ```
 
