@@ -9,10 +9,10 @@ This document summarizes the most common scenarios in which you should use our p
  
 You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.2 or prior, and copy the new equivalent of this selector.
 
-If you did not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
+If you do not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
 
 * [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
-* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/internal/ticket/details/T632424)
+* [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/ticket/details/T632424)
 
 Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
 
@@ -75,6 +75,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
 - [Revert Changes in v23.1](#revert-changes-in-v231)
+  - [Navigation Treeview customizations in projects created with DevExpress Templates](#navigation-treeview-customizations-in-projects-created-with-devexpress-templates)
   - [DxAccordion](#dxaccordion)
     - [Modify background color of a selected item](#modify-background-color-of-a-selected-item)
     - [Change font weight in root items](#change-font-weight-in-root-items)
@@ -1789,6 +1790,78 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 ## Revert Changes in v23.1
+
+### Navigation TreeView Customizations in Projects Created with DevExpress Templates
+
+DevExpress templates generate projects that contain a left-side navbar with TreeView. For this TreeView, we specified custom styles to change its default appearance. In v23.1, these styles cannot be applied. 
+In v23.1, do the following to restore the appearance:
+
+1. Assign a CSS class for all nodes in the *NavMenu.razor* file:
+```Razor
+<DxTreeView>
+     <DxTreeViewNode Text="Node1" CssClass="my-item" />
+     <DxTreeViewNode Text="Node2" CssClass="my-item" />
+     @* ... *@
+</DxTreeView>
+```
+
+2.  In the *NavMenu.razor.css* file, remove the following code:
+```css
+::deep .app-sidebar > .nav-pills > .nav-item:first-of-type {
+    padding-top: 1rem;
+}
+
+::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
+    padding-bottom: 1rem;
+}
+
+::deep .app-sidebar .nav-pills > .nav-item a {
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+}
+
+::deep .app-sidebar > .nav-pills > .nav-item > a {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    padding: .25rem 1rem .25rem .125rem;
+}
+::deep .app-sidebar,
+::deep .app-sidebar > .nav-pills,
+::deep .app-sidebar > .nav-pills > .nav-item,
+::deep .app-sidebar > .nav-pills > .nav-item > a:not(.active) {
+    background-color: inherit;
+}
+
+@media (max-width: 1199.98px) {
+    ::deep .app-sidebar > .nav-pills > .nav-item:last-of-type {
+        padding-bottom: 0;
+    }
+}
+```
+
+3. In the same file, add the following code:
+```css
+::deep .app-sidebar {
+    --dxbl-treeview-spacing-x: 0.5rem;
+    --dxbl-treeview-spacing-y: 1rem;
+}
+
+::deep .app-sidebar .my-item > :first-child {
+    --dxbl-treeview-font-weight: 600;
+}
+
+/* Use this rule for TreeViews without nested nodes */
+::deep .app-sidebar .my-item > :only-child:not(.dxbl-treeview-tmpl) > button {
+    display: none;
+}
+
+@media (max-width: 1199.98px) {
+    ::deep .app-sidebar {
+        padding-bottom: 0;
+    }
+}
+```
 
 ### DxAccordion
 
