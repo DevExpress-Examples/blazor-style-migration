@@ -1910,7 +1910,136 @@ In v23.1, use the following code:
 
 ### DxMenu
 
+#### Remove Item Paddings
+
+In v22.2, use the following CSS rules:
+
+```cs
+<style>
+    .my-menu .dx-menu-horizontal-item {
+        padding: 0;
+    }
+</style>
+
+<DxMenu CssClass="my-menu">...</DxMenu>
+```
+
+In v23.1, use the following CSS rules:
+
+```cs
+<style>
+    .my-menu {
+        --dxbl-menu-item-padding-x: 0;
+        --dxbl-menu-item-padding-y: 0;
+    }
+</style>
+
+<DxMenu CssClass="my-menu">...</DxMenu>
+```
+
 [Return to the table of contents.](#thetableofcontents)
+
+#### Place an Icon Above Item Text
+
+In v21.2 use the following code:
+
+```cs
+<styles>
+    .iconVertAlign .dx-menu-horizontal-item {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .iconVertAlign .dx-menu-item-text-container {
+        padding-left: 0 !important;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="iconVertAlign">
+    </Items>
+</DxMenu>
+```
+
+In v23.1 use the following code:
+
+```cs
+<styles>
+    .dxbl-menu-item > .dxbl-btn {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dxbl-menu.dxbl-menu-horizontal .dxbl-menu-item > .dxbl-btn {
+        --dxbl-btn-image-spacing: 0 !important;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="iconVertAlign">
+    </Items>
+</DxMenu>
+```
+
+#### Specify Item Width
+
+In v21.2 use the following code:
+
+```cs
+<styles>
+.menuItemLg .dx-menu-horizontal-item.nav-link.item-position-start {
+    width: 65px;
+}
+</styles>
+```
+
+In v23.1 use the following code:
+
+```cs
+```
+
+#### Change Item Font Size
+
+In v21.2 use the following code:
+
+```cs
+<styles>
+    .menuItemLg {
+        font-size: 11px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg">
+    </Items>
+</DxMenu>
+```
+
+In v23.1 use the following code:
+
+```cs
+<styles>
+    .menuItemLg {
+        --dxbl-menu-item-font-size: 11px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg">
+    </Items>
+</DxMenu>
+```
+
+#### Wrap Item Text
+
+In v21.2 use the following code:
+
+```css
+```
 
 ### DxTreeView
 
