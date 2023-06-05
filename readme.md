@@ -222,7 +222,7 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 
-#### Change the Header Cells' Background Color
+#### Change the Header Cell Background Color
 
 In v22.1, use the following CSS rules:
 
