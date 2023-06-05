@@ -84,6 +84,12 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
   - [DxContextMenu](#dxcontextmenu)
     - [Add a Scroll Bar](#add-a-scroll-bar)
   - [DxMenu](#dxmenu)
+    - [Remove Item Paddings](#remove-item-paddings)
+    - [Place an Icon Above Item Text](#place-an-icon-above-item-text)
+    - [Specify Item Width](#specify-item-width)
+    - [Change Item Font Size](#change-item-font-size)
+    - [Wrap and Center Item Text](#wrap-and-center-item-text)
+    - [Change Item Text Color](#change-item-text-color)
   - [DxTreeView](#dxtreeview)
     - [Display filter panel at the component bottom](#display-filter-panel-at-the-component-bottom)
     - [Apply custom highlighting to filter results](#apply-custom-highlighting-to-filter-results)
@@ -216,7 +222,7 @@ In v22.2, use the following CSS rules:
 [Return to the table of contents.](#thetableofcontents)
 
 
-#### Change the Header Cells' Background Color
+#### Change the Header Cell Background Color
 
 In v22.1, use the following CSS rules:
 
@@ -1796,7 +1802,10 @@ In v22.2, use the following CSS rules:
 DevExpress templates generate projects that contain a left-side navbar with TreeView. For this TreeView, we specified custom styles to change its default appearance. In v23.1, these styles cannot be applied. 
 In v23.1, do the following to restore the appearance:
 
-1. Assign a CSS class for all nodes in the *NavMenu.razor* file:
+1. Use Project Converter to update styles automatically.
+
+2. Update styles manually.
+2.1 Assign a CSS class for all nodes in the *NavMenu.razor* file:
 ```Razor
 <DxTreeView>
      <DxTreeViewNode Text="Node1" CssClass="my-item" />
@@ -1805,7 +1814,7 @@ In v23.1, do the following to restore the appearance:
 </DxTreeView>
 ```
 
-2.  In the *NavMenu.razor.css* file, remove the following code:
+2.2  In the *NavMenu.razor.css* file, remove the following code:
 ```css
 ::deep .app-sidebar > .nav-pills > .nav-item:first-of-type {
     padding-top: 1rem;
@@ -1840,7 +1849,7 @@ In v23.1, do the following to restore the appearance:
 }
 ```
 
-3. In the same file, add the following code:
+2.3 In the same file, add the following code:
 ```css
 ::deep .app-sidebar {
     --dxbl-treeview-spacing-x: 0.5rem;
@@ -1862,6 +1871,8 @@ In v23.1, do the following to restore the appearance:
     }
 }
 ```
+
+[Return to the table of contents.](#thetableofcontents)
 
 ### DxAccordion
 
@@ -1976,12 +1987,223 @@ In v23.1, use the following code:
     }
 </style>
 
-<DxContextMenu @ref="@ContextMenu" CssClass="myScrollMenu">
+<DxContextMenu @ref="@ContextMenu" CssClass="myScrollMenu"> ... </DxContextMenu>
 ```
 
 [Return to the table of contents.](#thetableofcontents)
 
 ### DxMenu
+
+#### Remove Item Paddings
+
+In v22.2, use the following CSS rules:
+
+```cs
+<style>
+    .my-menu .dx-menu-horizontal-item {
+        padding: 0;
+    }
+</style>
+
+<DxMenu CssClass="my-menu">...</DxMenu>
+```
+
+In v23.1, use the following CSS rules:
+
+```cs
+<style>
+    .my-menu {
+        --dxbl-menu-item-padding-x: 0;
+        --dxbl-menu-item-padding-y: 0;
+    }
+</style>
+
+<DxMenu CssClass="my-menu">...</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Place an Icon Above Item Text
+
+In v21.2, use the following code:
+
+```cs
+<styles>
+    .iconVertAlign .dx-menu-horizontal-item {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .iconVertAlign .dx-menu-item-text-container {
+        padding-left: 0 !important;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="iconVertAlign" />
+    </Items>
+</DxMenu>
+```
+
+In v23.1, use the following code:
+
+```cs
+<styles>
+    .dxbl-menu-item > .dxbl-btn {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dxbl-menu.dxbl-menu-horizontal .dxbl-menu-item > .dxbl-btn {
+        --dxbl-btn-image-spacing: 0 !important;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="iconVertAlign" />
+    </Items>
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Specify Item Width
+
+In v21.2, use the following code:
+
+```cs
+<styles>
+    .menuItemLg .dx-menu-horizontal-item.nav-link.item-position-start {
+        width: 65px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg" />
+    </Items>
+</DxMenu>
+```
+
+In v23.1, use the following code:
+
+```cs
+<styles>
+    .dxbl-menu-item > .dxbl-btn {
+        width: 65px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" />
+    </Items>
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Item Font Size
+
+In v21.2, use the following code:
+
+```cs
+<styles>
+    .menuItemLg {
+        font-size: 11px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg" />
+    </Items>
+</DxMenu>
+```
+
+In v23.1, use the following code:
+
+```cs
+<styles>
+    .menuItemLg {
+        --dxbl-menu-item-font-size: 11px;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg" />
+    </Items>
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Wrap and Center Item Text
+
+In v21.2 use the following code:
+
+```cs
+<styles>
+    .wrapText .dx-menu-item-text {
+        white-space: normal !important;
+    }
+    .wrapText .dx-menu-item-text-container {
+        text-align: center;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="wrapText" />
+    </Items>
+</DxMenu>
+```
+
+In v23.1, use the following code:
+
+```cs
+<styles>
+    .wrapText .dxbl-menu-item-text {
+        white-space: normal !important;
+    }
+    .wrapText .dxbl-menu-item-text-container {
+        text-align: center;
+    }
+</styles>
+
+<DxMenu>
+    <Items>
+        <DxMenuItem Text="My item" CssClass="menuItemLg" />
+    </Items>
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Item Text Color
+
+In v21.2, use the following CSS rules:
+
+```css
+.menu-container .dx-menu-item {
+    color: white !important;
+}
+```
+
+In v23.1, use the following code:
+
+```cs
+<styles>
+    .my-menu {
+        color: white;
+    }
+</styles>
+
+ <DxMenu CssClass="my-menu">...</DxMenu>
+```
 
 [Return to the table of contents.](#thetableofcontents)
 
