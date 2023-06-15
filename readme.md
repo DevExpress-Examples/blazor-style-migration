@@ -84,12 +84,20 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
   - [DxContextMenu](#dxcontextmenu)
     - [Add a Scroll Bar](#add-a-scroll-bar)
   - [DxMenu](#dxmenu)
-    - [Remove Item Paddings](#remove-item-paddings)
-    - [Place an Icon Above Item Text](#place-an-icon-above-item-text)
-    - [Specify Item Width](#specify-item-width)
-    - [Change Item Font Size](#change-item-font-size)
-    - [Wrap and Center Item Text](#wrap-and-center-item-text)
-    - [Change Item Text Color](#change-item-text-color)
+    - [Alter item paddings](#alter-item-paddings)
+    - [Place an icon above item text](#place-an-icon-above-item-text)
+    - [Specify item width](#specify-item-width)
+    - [Specify drop-down item's width](#specify-drop-down-items-width)
+    - [Change item font size](#change-item-font-size)
+    - [Wrap and center item text](#wrap-and-center-item-text)
+    - [Change item text color](#change-i-text-colcr)
+    - [Change item background color](#ciangebitem-backgcound-color)
+    - [Make a drop-down item overflow container boundaries](#make-a-drop-down-item-overflow-container-boundaries)
+    - [Add a scroll bar to a drop-down item](#add-a-scroll-bar-to-a-drop-down-item)
+    - [Remove background for selected and hovered drop-down items](#remove-background-for-selected-and-hovered-drop-down-items)
+    - [Reduce Menu size](#reduce-menu-size)
+    - [Remove the left padding of a drop-down toggle](#remove-the-left-padding-of-a-drop-down-toggle)
+    - [Add custom content to title container](#add-custom-content-to-title-container)
   - [DxTreeView](#dxtreeview)
     - [Display filter panel at the component bottom](#display-filter-panel-at-the-component-bottom)
     - [Apply custom highlighting to filter results](#apply-custom-highlighting-to-filter-results)
@@ -1994,9 +2002,9 @@ In v23.1, use the following code:
 
 ### DxMenu
 
-#### Remove Item Paddings
+#### Alter Item Paddings
 
-In v22.2, use the following CSS rules:
+In v21.1-v22.2, use the following CSS rules:
 
 ```cs
 <style>
@@ -2028,7 +2036,7 @@ In v23.1, use the following CSS rules:
 In v21.2, use the following code:
 
 ```cs
-<styles>
+<style>
     .iconVertAlign .dx-menu-horizontal-item {
         flex-direction: column;
         align-items: center;
@@ -2037,7 +2045,7 @@ In v21.2, use the following code:
     .iconVertAlign .dx-menu-item-text-container {
         padding-left: 0 !important;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2049,7 +2057,7 @@ In v21.2, use the following code:
 In v23.1, use the following code:
 
 ```cs
-<styles>
+<style>
     .dxbl-menu-item > .dxbl-btn {
         flex-direction: column;
         align-items: center;
@@ -2058,7 +2066,7 @@ In v23.1, use the following code:
     .dxbl-menu.dxbl-menu-horizontal .dxbl-menu-item > .dxbl-btn {
         --dxbl-btn-image-spacing: 0 !important;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2074,11 +2082,11 @@ In v23.1, use the following code:
 In v21.2, use the following code:
 
 ```cs
-<styles>
+<style>
     .menuItemLg .dx-menu-horizontal-item.nav-link.item-position-start {
         width: 65px;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2090,11 +2098,11 @@ In v21.2, use the following code:
 In v23.1, use the following code:
 
 ```cs
-<styles>
+<style>
     .dxbl-menu-item > .dxbl-btn {
         width: 65px;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2105,16 +2113,48 @@ In v23.1, use the following code:
 
 [Return to the table of contents.](#thetableofcontents)
 
+#### Specify Drop-Down Item's Width
+
+In v21.2, use the following code:
+
+```cs
+<style>
+    .myMenu .dropdown-menu {
+        width: 250px !important;
+    }
+</style>
+
+<DxMenu ItemsPosition="ItemPosition.Start" CssClass="myMenu">
+    @* ... *@
+</DxMenu>
+```
+
+In v23.1, use the `SubMenuCssClass` property as follows:
+
+```cs
+<style>
+    .myMenu {
+        width: 250px;
+    }
+</style>
+
+<DxMenu ItemsPosition="ItemPosition.Start" SubMenuCssClass="myMenu">
+    @* ... *@
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
 #### Change Item Font Size
 
 In v21.2, use the following code:
 
 ```cs
-<styles>
+<style>
     .menuItemLg {
         font-size: 11px;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2126,11 +2166,11 @@ In v21.2, use the following code:
 In v23.1, use the following code:
 
 ```cs
-<styles>
+<style>
     .menuItemLg {
         --dxbl-menu-item-font-size: 11px;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2143,17 +2183,17 @@ In v23.1, use the following code:
 
 #### Wrap and Center Item Text
 
-In v21.2 use the following code:
+In v21.2, use the following code:
 
 ```cs
-<styles>
+<style>
     .wrapText .dx-menu-item-text {
         white-space: normal !important;
     }
     .wrapText .dx-menu-item-text-container {
         text-align: center;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2165,14 +2205,14 @@ In v21.2 use the following code:
 In v23.1, use the following code:
 
 ```cs
-<styles>
+<style>
     .wrapText .dxbl-menu-item-text {
         white-space: normal !important;
     }
     .wrapText .dxbl-menu-item-text-container {
         text-align: center;
     }
-</styles>
+</style>
 
 <DxMenu>
     <Items>
@@ -2196,14 +2236,195 @@ In v21.2, use the following CSS rules:
 In v23.1, use the following code:
 
 ```cs
-<styles>
+<style>
     .my-menu {
         color: white;
     }
-</styles>
+</style>
 
  <DxMenu CssClass="my-menu">...</DxMenu>
 ```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Item Background Color
+
+In v22.1, use the following CSS rules:
+
+```css
+.my-menu dxbl-menu-item {
+    background-color: yellow; 
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.my-menu .dxbl-menu-item {
+    background-color: yellow;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Make a Drop-Down Item Overflow Container Boundaries
+
+In v20.2, use the following code:
+
+```cs
+<style>
+    .menu-style .nav-item.dropdown.dx-menu-item {
+        position: inherit !important;
+    }
+</style>
+
+<DxMenu DropDownActionMode="MenuDropDownActionMode.Click" CssClass="customMenu">
+    <Items>
+        @* ... *@
+    </Items>
+</DxMenu>
+```
+
+In v21.2, use the following code:
+
+```cs
+<style>
+    .customMenu .dropdown-menu {
+        position: fixed;
+    }
+</style>
+
+<DxMenu DropDownActionMode="MenuDropDownActionMode.Click" CssClass="customMenu">
+    <Items>
+        @* ... *@
+    </Items>
+</DxMenu>
+```
+
+In v23.1, you can remove these rules. This functionality is available out-of-the-box.
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Add a Scroll Bar to a Drop-Down Item
+
+In v22.1, use one of the following CSS rules:
+
+```css
+.menu-item .dropdown-menu {
+    height: 100px;
+    overflow: auto !important;
+}
+
+.my-menu .dropdown-menu > ul {
+    max-height:600px;
+    overflow-y: auto;
+}
+```
+
+In v23.1, use the `SubMenuCssClass` property as follows:
+
+```cs
+<style>
+    .myMenu {
+        height: 100px;
+        overflow: auto !important;
+    }
+</style>
+
+<DxMenu SubMenuCssClass="myMenu">
+    @* ... *@
+</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Remove Background for Selected and Hovered Drop-Down Items
+
+In v21.2, use the following CSS rules:
+
+```css
+.nav-link.item-position-start:hover {
+    background-color: #FFF;
+    transform: none!important;
+}
+.nav-link.item-position-start.selected {
+    background-color: #FFF;
+    transform: none !important;
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.dxbl-menu-item .dxbl-active {
+    background-color: #FFF;
+    transform: none !important;
+}
+
+.dxbl-menu-dropdown-item {
+    background-color: #FFF;
+    transform: none !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Reduce Menu Size
+
+In v21.2, use the following rules:
+
+```css
+.nav-link, .dropdown-item {
+    padding: 0.1rem 0.5rem;
+}
+
+.menuitem {
+    font-size: 0.8rem;
+}
+```
+
+In v23.1, set the [SizeMode](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxMenu.SizeMode) property value to `Small`:
+
+```cs
+<DxMenu Title="DevExpress" SizeMode="SizeMode.Large">...</DxMenu>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Remove the Left Padding of a Drop-Down Toggle
+
+In v21.2, use the following CSS rules:
+
+```css
+.my-menu .dropdown-toggle {
+    padding-left: unset;
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.dxbl-menu-dropdown-toggle {
+    --dxbl-btn-image-spacing: 0;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Add Custom Content to Title Container
+
+In v20.2, use the following CSS selectors:
+
+```css
+.my-menu .dx-menu-title::before{
+    <!-- Custom content -->
+}
+.my-menu .dx-menu-title::after {
+    <!-- Custom content -->
+}
+```
+
+In v23.1, use the [TitleTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxMenu.TitleTemplate) property.
 
 [Return to the table of contents.](#thetableofcontents)
 
