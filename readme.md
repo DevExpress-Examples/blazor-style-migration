@@ -83,6 +83,8 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove item borders](#remove-item-borders)
   - [DxContextMenu](#dxcontextmenu)
     - [Add a Scroll Bar](#add-a-scroll-bar)
+  - [DxGridLayout](#dxgridlayout)
+    - [Specify a gap between items](#specify-a-gap-between-items)
   - [DxMenu](#dxmenu)
     - [Alter item paddings](#alter-item-paddings)
     - [Place an icon above item text](#place-an-icon-above-item-text)
@@ -1999,6 +2001,30 @@ In v23.1, use the following code:
 ```
 
 [Return to the table of contents.](#thetableofcontents)
+
+### DxGridLayout
+
+#### Specify a Gap Between Items
+
+In v21.1, use the following CSS rules:
+
+```css
+.gap-3 > .dx-gridlayout-root {
+    gap: inherit !important;
+}
+```
+
+In v23.1, use the [ItemContainerCssClass](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridLayout.ItemContainerCssClass) property as follows:
+
+```cs
+<style>
+    .item-container {
+        gap: 10px !important;
+    }
+</style>
+
+<DxGridLayout style="height:500px" ItemContainerCssClass="item-container">...</DxGridLayout>
+```
 
 ### DxMenu
 
