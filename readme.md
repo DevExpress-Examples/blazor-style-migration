@@ -19,7 +19,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
 <a name="thetableofcontents"></a>
 ## Table of Contents
 
-- [Revert Changes in v22.2](#revert-changes-in-v222)
+- [Restoring Changes Made after our v22.2 Release](#restoring-changes-made-after-our-v222-release)
   - [DxGrid](#dxgrid)
     - [Align header captions](#align-header-captions)
     - [Color alternate rows](#color-alternate-rows)
@@ -74,8 +74,8 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize popup size and position](#customize-popup-size-and-position)
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
-- [Revert Changes in v23.1](#revert-changes-in-v231)
-  - [Navigation Treeview customizations in projects created with DevExpress Templates](#navigation-treeview-customizations-in-projects-created-with-devexpress-templates)
+- [Restoring Changes Made after our v23.1 Release](#restoring-changes-made-after-our-v231-release)
+  - [Navigation TreeView customizations in projects created with DevExpress Templates](#navigation-treeview-customizations-in-projects-created-with-devexpress-templates)
   - [DxAccordion](#dxaccordion)
     - [Modify background color of a selected item](#modify-background-color-of-a-selected-item)
     - [Change font weight in root items](#change-font-weight-in-root-items)
@@ -101,7 +101,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove the left padding of a drop-down toggle](#remove-the-left-padding-of-a-drop-down-toggle)
     - [Add custom content to title container](#add-custom-content-to-title-container)
   - [DxTreeView](#dxtreeview)
-    - [Display filter panel at the component bottom](#display-filter-panel-at-the-component-bottom)
+    - [Display filter panel at the bottom of the bomponent](#display-filter-panel-at-the-bottom-of-the-component)
     - [Apply custom highlighting to filter results](#apply-custom-highlighting-to-filter-results)
     - [Customize badge appearance](#customize-badge-appearance)
     - [Achieve NavLinkMatch.All behavior](#achieve-navlinkmatchall-behavior)
@@ -109,7 +109,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove left margin of child nodes](#remove-left-margin-of-child-nodes)
     - [Display Context Menu for a node](#display-context-menu-for-a-node)
 
-## Revert Changes in v22.2
+## Restoring Changes Made after our v22.2 Release
 
 ### DxGrid
 
@@ -1805,17 +1805,17 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-## Revert Changes in v23.1
+## Restoring Changes Made after our v23.1 Release
 
 ### Navigation TreeView Customizations in Projects Created with DevExpress Templates
 
-DevExpress templates generate projects that contain a left-side navbar with TreeView. For this TreeView, we specified custom styles to change its default appearance. In v23.1, these styles cannot be applied. 
-In v23.1, do the following to restore the appearance:
+DevExpress templates generate projects that contain a left-side navbar with a TreeView. For the TreeView, we specified custom styles and changed its default appearance. In v23.1, these styles cannot be applied. In v23.1, do the following to restore appearance:
 
 1. Use Project Converter to update styles automatically.
 
 2. Update styles manually.
 2.1 Assign a CSS class for all nodes in the *NavMenu.razor* file:
+
 ```Razor
 <DxTreeView>
      <DxTreeViewNode Text="Node1" CssClass="my-item" />
@@ -2456,7 +2456,7 @@ In v23.1, use the [TitleTemplate](https://docs.devexpress.com/Blazor/DevExpress.
 
 ### DxTreeView
 
-#### Display Filter Panel at the Component Bottom
+#### Display Filter Panel at the Bottom of the Component
 
 In v22.2, use the following code:
 
@@ -2641,6 +2641,6 @@ In v21.2, use the following CSS rules to display a Context Menu above the `NodeT
 }
 ```
 
-In v23.1, you can remove these classes as we significantly redesigned the layout of our Context Menu. These classes are no longer required.
+In v23.1, you can remove these classes as we redesigned the layout of our Context Menu. These classes are no longer required.
 
 [Return to the table of contents.](#thetableofcontents)
