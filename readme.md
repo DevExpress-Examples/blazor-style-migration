@@ -2651,9 +2651,11 @@ In v23.1, you can remove these classes as we redesigned the layout of our Contex
 In v22.2, use the following code:
 
 ```cs
-.menuButton a {
-    flex-direction: column;
-}
+<style>
+    .menuButton a {
+        flex-direction: column;
+    }
+</style>
 
 <DxTreeView>
     <DxTreeViewNode IconCssClass="my-icon" 
@@ -2665,9 +2667,11 @@ In v22.2, use the following code:
 In v23.1, use the following code:
 
 ```cs
-.menuButton .dxbl-treeview-item-container {
-        flex-direction: column;
-}
+<style>
+    .menuButton .dxbl-treeview-item-container {
+            flex-direction: column;
+    }
+</style>
 
 <DxTreeView>
     <DxTreeViewNode IconCssClass="my-icon" 
