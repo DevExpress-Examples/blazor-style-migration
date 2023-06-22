@@ -108,6 +108,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize item container's indents](#customize-item-containers-indents)
     - [Remove left margin of child nodes](#remove-left-margin-of-child-nodes)
     - [Display Context Menu for a node](#display-context-menu-for-a-node)
+    - [Place an icon above node text](#place-an-icon-above-node-text)
 
 ## Restoring Changes Made after our v22.2 Release
 
@@ -2642,5 +2643,41 @@ In v21.2, use the following CSS rules to display a Context Menu above the `NodeT
 ```
 
 In v23.1, you can remove these classes as we redesigned the layout of our Context Menu. These classes are no longer required.
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Place an Icon Above Node Text
+
+In v22.2, use the following code:
+
+```cs
+<style>
+    .menuButton a {
+        flex-direction: column;
+    }
+</style>
+
+<DxTreeView>
+    <DxTreeViewNode IconCssClass="my-icon" 
+                    CssClass="menuButton" />
+    @* ... *@
+</DxTreeView>
+```
+
+In v23.1, use the following code:
+
+```cs
+<style>
+    .menuButton .dxbl-treeview-item-container {
+            flex-direction: column;
+    }
+</style>
+
+<DxTreeView>
+    <DxTreeViewNode IconCssClass="my-icon" 
+                    CssClass="menuButton" />
+    @* ... *@
+</DxTreeView>
+```
 
 [Return to the table of contents.](#thetableofcontents)
