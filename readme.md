@@ -935,7 +935,7 @@ In v22.1, use the following CSS rules:
 }
 ```
 
-In v22.2, use the follwing CSS rules:
+In v22.2, use the following CSS rules:
 
 ```css
 .MyTabsCss {
@@ -2003,6 +2003,31 @@ In v23.1, use the following code:
 
 [Return to the table of contents.](#thetableofcontents)
 
+### DxGrid
+
+#### Align Column Headers
+
+In v22.2, use the following CSS rules:
+
+```css
+.dxbl-grid-header-content {
+    justify-content: center !important;
+    text-align: center !important;
+}
+```
+
+In v23.1, use the following CSS rule:
+
+```css
+.dxbl-grid-header-content > span {
+    width:100%;
+}
+.dxbl-grid-header-content {
+    justify-content: center !important;
+    text-align: center !important;
+}
+```
+
 ### DxGridLayout
 
 #### Specify a Gap Between Items
@@ -2452,6 +2477,149 @@ In v20.2, use the following CSS selectors:
 ```
 
 In v23.1, use the [TitleTemplate](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxMenu.TitleTemplate) property.
+
+[Return to the table of contents.](#thetableofcontents)
+
+### DxTabs
+
+#### Create Rounded Tabs
+
+In v22.1, v22.2, and v23.1, use the same razor code:
+
+```cs
+<DxTabs CssClass="MyTabsCss">
+    <DxTab Text="Home" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Products" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Support" CssClass="MyTabCss"></DxTab>
+</DxTabs>
+```
+
+In v22.1, use the following CSS rules:
+
+```css
+.MyTabsCss > ul {
+    border-bottom-width: 0px;
+}
+.MyTabCss > a {
+    border-radius: 20px !important;
+    border: 1px solid white !important;
+}
+.MyTabCss > a:hover {
+    border-color: #e9ecef !important;
+}
+.MyTabCss > a.active {
+    border-color: dodgerblue !important;
+    background-color: dodgerblue !important;
+}
+```
+
+In v22.2, use the following CSS rules:
+
+```css
+.MyTabsCss {
+    border-bottom-width:0px;
+}
+.MyTabCss  {
+    border-radius: 20px !important;
+    border: 1px solid white !important;
+}
+.MyTabCss:hover {
+    border-color: #e9ecef !important;
+}
+
+.MyTabCss.dxbl-active {
+    border-color: dodgerblue !important;
+    background-color: dodgerblue !important;
+}
+.MyTabCss.dxbl-active:after {
+    background-color:transparent!important;
+}
+```
+
+In v23.1, use the following CSS rules:
+
+```css
+.MyTabsCss nav {
+    border-bottom-width: 0px !important; 
+}
+.MyTabCss  {
+    border-radius: 20px !important;
+    border: 1px solid white !important;
+}
+.MyTabCss:hover {
+    border-color: #e9ecef !important;
+}
+
+.MyTabCss.dxbl-active {
+    border-color: dodgerblue !important;
+    background-color: dodgerblue !important;
+}
+.MyTabCss.dxbl-active:after {
+    background-color:transparent!important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Background Color of a Tab Header
+
+In v22.2 and v23.1, use the same razor code:
+
+```cs
+<DxTabs CssClass="MyTabsCss">
+    <DxTab Text="Home" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Products" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Support" CssClass="MyTabCss"></DxTab>
+</DxTabs>
+```
+
+In v22.1, use the following CSS rule:
+
+```css
+.MyTabsCss {
+    background-color: #e6eaf4 !important;
+}
+```
+
+In v23.1, use the following CSS rule:
+
+```css
+.MyTabsCss nav {
+    background-color: #e6eaf4 !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change the Font of a Tab Header
+
+In v22.2 and v23.1, use the same razor code:
+
+```cs
+<DxTabs CssClass="MyTabsCss">
+    <DxTab Text="Home" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Products" CssClass="MyTabCss"></DxTab>
+    <DxTab Text="Support" CssClass="MyTabCss"></DxTab>
+</DxTabs>
+```
+
+In v22.1, use the following CSS rule:
+
+```css
+.MyTabsCss {
+       font-size: 13px !important;
+       font-weight: 600 !important;
+}
+```
+
+In v23.1, use the following CSS rule:
+
+```css
+.MyTabsCss nav {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+```
 
 [Return to the table of contents.](#thetableofcontents)
 
