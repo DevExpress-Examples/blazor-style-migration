@@ -117,6 +117,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Place an icon above node text](#place-an-icon-above-node-text)
 - [Restoring Changes Made after our v23.2 Release](#restoring-changes-made-after-our-v232-release)
   - [DxToolbar](dxtoolbar-1)
+    - [Change item border color](#change-item-border-color)
 
 ## Restoring Changes Made after our v22.2 Release
 
@@ -2859,7 +2860,7 @@ In v23.1, use the following code:
 
 ### DxToolbar
 
-#### Change the Item's Border Color
+#### Change Item Border Color
 
 In v23.1, use the following style:
 
