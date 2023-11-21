@@ -102,6 +102,10 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Reduce Menu size](#reduce-menu-size)
     - [Remove the left padding of a drop-down toggle](#remove-the-left-padding-of-a-drop-down-toggle)
     - [Add custom content to title container](#add-custom-content-to-title-container)
+  - [DxTabs](#dxtabs-1)
+    - [Create rounded tabs](#create-rounded-tabs-1)
+    - [Change background color of a tab header](#change-background-color-of-a-tab-header)
+    - [Change the font of a tab header](#change-the-font-of-a-tab-header)
   - [DxTreeView](#dxtreeview)
     - [Display filter panel at the bottom of the bomponent](#display-filter-panel-at-the-bottom-of-the-component)
     - [Apply custom highlighting to filter results](#apply-custom-highlighting-to-filter-results)
@@ -111,6 +115,9 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove left margin of child nodes](#remove-left-margin-of-child-nodes)
     - [Display Context Menu for a node](#display-context-menu-for-a-node)
     - [Place an icon above node text](#place-an-icon-above-node-text)
+- [Restoring Changes Made after our v23.2 Release](#restoring-changes-made-after-our-v232-release)
+  - [DxToolbar](dxtoolbar-1)
+    - [Change item border color](#change-item-border-color)
 
 ## Restoring Changes Made after our v22.2 Release
 
@@ -844,14 +851,12 @@ In v22.2, use the following CSS rules:
 
 #### Center Toolbar Item Content
 
-In both v22.1 and v22.2, use the same razor code:
+In both v20.1 and v22.2, use the same razor code:
 
-  ```cs
+```cs
 <DxToolbar ItemRenderStyleMode="ToolbarRenderStyleMode.Contained">
     <Items>
-
         <DxToolbarItem Name="Add" IconCssClass="fa fa-plus" Text="Add New Program" Tooltip="Add New Program" />
-
         <DxToolbarItem CssClass="mycss" Name="ShowAllSwitch" BeginGroup="true" GroupName="MyTestGroup" RenderStyleMode="ToolbarItemRenderStyleMode.Plain">
             <Template>
                 <div>
@@ -859,7 +864,6 @@ In both v22.1 and v22.2, use the same razor code:
                 </div>
             </Template>
         </DxToolbarItem>
-
         <DxToolbarItem Name="SearchBox" Alignment="@ToolbarItemAlignment.Right" BeginGroup="true" RenderStyleMode="ToolbarItemRenderStyleMode.Contained">
             <Template>
                 <DxTextBox @bind-Text="@SearchString"
@@ -868,14 +872,14 @@ In both v22.1 and v22.2, use the same razor code:
                 </DxTextBox>
             </Template>
         </DxToolbarItem>
-
     </Items>
 </DxToolbar>
+
 @code {
     public bool ShowAll { get; set; } = true;
     public string SearchString { get; set; } = "";
 }
-  ```
+```
   
 In v20.1, use the following CSS rules:
 
@@ -2848,6 +2852,26 @@ In v23.1, use the following code:
                     CssClass="menuButton" />
     @* ... *@
 </DxTreeView>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+## Restoring Changes Made after our v23.2 Release
+
+### DxToolbar
+
+#### Change Item Border Color
+
+In v23.1, use the following style:
+
+```css
+.my-toolbar .dxbl-toolbar-group > .dxbl-btn { border: 1px red solid; }
+```
+
+In v23.2, use the following style:
+
+```css
+.my-toolbar .dxbl-toolbar-group > .dxbl-toolbar-item > .dxbl-btn { border: 1px red solid; } 
 ```
 
 [Return to the table of contents.](#thetableofcontents)
