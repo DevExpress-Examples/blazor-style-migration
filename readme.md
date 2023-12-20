@@ -116,7 +116,9 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Display Context Menu for a node](#display-context-menu-for-a-node)
     - [Place an icon above node text](#place-an-icon-above-node-text)
 - [Restoring Changes Made after our v23.2 Release](#restoring-changes-made-after-our-v232-release)
-  - [DxToolbar](dxtoolbar-1)
+  - [DxGrid](#dxgrid-2)
+    [Customize empty data area](#customize-empty-data-area)
+  - [DxToolbar](#dxtoolbar-1)
     - [Change item border color](#change-item-border-color)
 
 ## Restoring Changes Made after our v22.2 Release
@@ -2857,6 +2859,26 @@ In v23.1, use the following code:
 [Return to the table of contents.](#thetableofcontents)
 
 ## Restoring Changes Made after our v23.2 Release
+
+### DxGrid
+
+#### Customize Empty Data Area
+
+In v23.1, use the following selector:
+
+```css
+.dxbl-grid-empty-data { ... }
+```
+
+In v23.2.4 use the following selector:
+
+```css
+.dxbl-grid-empty-data-area { ... }
+```
+
+Alternatively, you can use the `EmptyDataArea` [element type](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridElementType) of the Grid's [CustomizeElement](http://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomizeElement) event.
+
+[Return to the table of contents.](#thetableofcontents)
 
 ### DxToolbar
 
