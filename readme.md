@@ -117,9 +117,22 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Place an icon above node text](#place-an-icon-above-node-text)
 - [Restoring Changes Made after our v23.2 Release](#restoring-changes-made-after-our-v232-release)
   - [DxGrid](#dxgrid-2)
-    [Customize empty data area](#customize-empty-data-area)
+    - [Customize empty data area](#customize-empty-data-area)
   - [DxToolbar](#dxtoolbar-1)
     - [Change item border color](#change-item-border-color)
+- [Restoring Changes Made after our v24.1 Release](#restoring-changes-made-after-our-v241-release)
+  - [DxScheduler](#dxscheduler-1)
+    - [Add a Scrollbar to a View](#add-a-scrollbar-to-a-view)
+    - [Hide Default Interval Navigator](#hide-default-interval-navigator)
+    - [Change the Default Cell Height](#change-the-default-cell-height)
+    - [Change the Default Cell Width](#change-the-default-cell-width)
+    - [Rotate Resource Headers in Timeline View](#rotate-resource-headers-in-timeline-view)
+    - [Change Edit Form Width](#change-edit-form-width-1)
+    - [Swap Buttons in the Reccuring Appointment Editing Popup](#swap-buttons-in-the-reccuring-appointment-editing-popup)
+    - [Remove Buttons From the Appointment Tooltip](#remove-buttons-from-the-appointment-tooltip)
+    - [Remove Day Headers From a View](#remove-day-headers-from-a-view)
+    - [Change Button Icons of the Appointment Edit Form](#change-button-icons-of-the-appointment-edit-form)
+    - [Hide the Default Today Button](#hide-the-default-today-button)
 
 ## Restoring Changes Made after our v22.2 Release
 
@@ -2894,6 +2907,340 @@ In v23.2, use the following style:
 
 ```css
 .my-toolbar .dxbl-toolbar-group > .dxbl-toolbar-item > .dxbl-btn { border: 1px red solid; } 
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+## Restoring Changes Made after our v24.1 Release
+
+### DxScheduler
+
+#### Add a Scrollbar to a View
+
+In v23.2, use the following styles for Day and Week views:
+
+```css
+.dxbs-sc-dayview > div:first-child {
+    overflow-y: scroll;
+}
+.dxbs-sc-dayview .dxbs-sc-scroll-container {
+    height: 400px;
+    overflow-y: scroll;
+}
+```
+
+In v24.1, the scroll bar automatically appears out of the box when the view area is larger than the specified component size. Use the following code for any kind of views:
+
+```cs
+<style>
+    .my-scheduler {
+        height: 500px;
+    }
+</style>
+
+<DxScheduler DataStorage="@DataStorage"
+             CssClass="my-scheduler">
+    @* ... *@
+</DxScheduler>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Hide Default Interval Navigator
+
+In v23.1, use the following code:
+
+```cs
+<style>
+    .my-scheduler .dxbs-sc-tb-wrapper {
+        display:none;
+    }
+</style>
+
+<DxScheduler StartDate="@date" CssClass="my-scheduler"></DxScheduler>
+```
+
+In v24.1, use the following code:
+
+```cs
+<style>
+    .my-scheduler .dxbl-sc-tb-wrapper {
+        display:none;
+    }
+</style>
+
+<DxScheduler StartDate="@date" CssClass="my-scheduler"></DxScheduler>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change the Default Cell Height
+
+In v23.1, use the following CSS rule:
+
+```css
+.my-scheduler .dxbs-sc-scroll-container tr {
+    height:50px;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.my-scheduler .dxbl-sc-scroll-container tr {
+    height:50px;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change the Default Cell Width
+
+In v22.2, use the following CSS rule:
+
+```css
+.scheduler .dxbs-sc-month .dxbs-sc-time-cell, .scheduler .dxbs-sc-month .dxbs-sc-weekday {
+    width: 100px !important;
+}
+```
+
+In v24.1, use the `CellMinWidth` property to specify the cell minimum width in any kind of view.
+
+```cs
+<DxSchedulerMonthView CellMinWidth="120"></DxSchedulerMonthView>
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Rotate Resource Headers in Timeline View
+
+In v21.1, use the following CSS rules:
+
+```css
+.MyTimeLineViewCss .dxbs-sc-resources-scroll-area .dxsc-resource-header-content > span {
+    transform: initial;
+    -ms-transform: initial;
+    -webkit-transform: initial;
+    writing-mode: initial;
+    -ms-writing-mode: initial;
+    -webkit-writing-mode: initial;
+    white-space: nowrap;
+}
+
+.MyTimeLineViewCss .dxbs-sc-resources-scroll-area, .MyTimeLineViewCss .dxbs-sc-empty-cell {
+    width: 100px;
+}
+```
+
+In v24.1, use the following CSS rules:
+
+```css
+.MyTimeLineViewCss .dxbl-sc-resources-scroll-area .dxbl-resource-header-content > span {
+    transform: initial;
+    -ms-transform: initial;
+    -webkit-transform: initial;
+    writing-mode: initial;
+    -ms-writing-mode: initial;
+    -webkit-writing-mode: initial;
+    white-space: nowrap;
+}
+
+.MyTimeLineViewCss .dxbl-sc-resources-scroll-area, .MyTimeLineViewCss .dxbl-sc-empty-cell {
+    width: 100px;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Edit Form Width
+
+In v22.1, use the following CSS rules:
+
+```css
+.dxbs-appointment-edit-dialog {
+    width: 800px!important;
+    max-width: 800px!important;
+}
+```
+
+In v22.2, use the following CSS rules:
+
+```css
+.dxbs-apt-edit-dialog {
+    width: 800px!important;
+    max-width: 800px!important;
+}
+```
+
+In v24.1, use the following CSS rules:
+
+```css
+.dxbl-apt-edit-dialog {
+    width: 800px!important;
+    max-width: 800px!important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Swap Buttons in the Reccuring Appointment Editing Popup
+
+In v22.2, use the following CSS rules:
+
+```css
+.dxbs-recurrent-apt-edit-dialog .dxbl-modal-body > div {
+    flex-direction: row-reverse;
+}
+.dxbs-recurrent-apt-edit-dialog .dxbl-modal-body > div button {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+}
+```
+
+In v24.1, use the following CSS rules:
+
+```css
+.dxbl-recurrent-apt-edit-dialog .dxbl-modal-body > div {
+    flex-direction: row-reverse;
+}
+.dxbl-recurrent-apt-edit-dialog .dxbl-modal-body > div button {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Remove Buttons From the Appointment Tooltip
+
+In v21.2, use the following CSS rule to remove all buttons:
+
+```css
+.dxbs-scheduler.dxsc-tooltip .popover-header button {
+   display: none;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-flyout-dialog .dxbl-sc-tooltip-header button {
+    display: none;
+}
+```
+
+Modify the selector to hide a specific button. For example, the following rule hides the **Expand** button:
+
+```css
+.dxbl-flyout-dialog .dxbl-sc-tooltip-header button.btn:last-child {
+    display: none;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Remove Day Headers From a View
+
+In v21.1, use the following code to remove dates from the Day view:
+
+```cs
+<style>
+    .dxbs-scheduler .DayView .dxbs-sc-date-hr {
+        display: none;
+    }
+</style>
+
+<DxScheduler ...>
+    <DxSchedulerDayView CssClass="DayView"></DxSchedulerDayView>
+</DxScheduler ...>
+```
+
+In v24.1, use the following code:
+
+```cs
+<style>
+    .dxbl-scheduler .DayView .dxbl-sc-date-hr {
+        display: none;
+    }
+</style>
+
+<DxScheduler ...>
+    <DxSchedulerDayView CssClass="DayView"></DxSchedulerDayView>
+</DxScheduler ...>
+```
+
+Modify the CSS selector to hide date cells in other cases. For example, the following rule completely removes date cells:
+
+```css
+td.dxbl-sc-date-hr.dxbl-sc-date-hr-today {
+    display: none;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change Button Icons of the Appointment Edit Form
+
+In v20.2, use the following CSS rules to change icons of **Discard** and **Save** buttons:
+
+```css
+.dxsc-save-icon use {
+    display: none;
+}
+.dxsc-save-icon {
+    background-image: url(/images/icon1.png);
+    background-size: cover;
+}
+
+.dxsc-close-icon use {
+    display: none;
+}
+
+.dxsc-close-icon {
+    background-image: url(/images/icon2.png);
+    background-size: cover;
+}
+```
+
+In v24.1, use the following CSS rules:
+
+```css
+.dxbl-save-icon use {
+    display: none;
+}
+.dxbl-save-icon {
+    background-image: url(/images/icon1.png);
+    background-size: cover;
+}
+
+.dxbl-close-icon use {
+    display: none;
+}
+
+.dxbl-close-icon {
+    background-image: url(/images/icon2.png);
+    background-size: cover;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Hide the Default Today Button
+
+In v20.2, use the following CSS rule:
+
+```css
+.dxbs-sc-toolbar > button:first-child {
+     display: none;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-sc-toolbar > button:first-child {
+     display: none;
+}
 ```
 
 [Return to the table of contents.](#thetableofcontents)
