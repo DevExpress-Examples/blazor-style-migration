@@ -120,7 +120,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize empty data area](#customize-empty-data-area)
   - [DxToolbar](#dxtoolbar-1)
     - [Change item border color](#change-item-border-color)
-- [Restoring Changes Made after our v24.1 Release](#restoring-changes-made-after-our-v241-release)
+- [Restoring Changes Made After Our v24.1 Release](#restoring-changes-made-after-our-v241-release)
   - [DxScheduler](#dxscheduler-1)
     - [Add a Scrollbar to a View](#add-a-scrollbar-to-a-view)
     - [Hide Default Interval Navigator](#hide-default-interval-navigator)
@@ -134,7 +134,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Change Button Icons of the Appointment Edit Form](#change-button-icons-of-the-appointment-edit-form)
     - [Hide the Default Today Button](#hide-the-default-today-button)
 
-## Restoring Changes Made after our v22.2 Release
+## Restoring Changes Made After Our v22.2 Release
 
 ### DxGrid
 
@@ -2911,7 +2911,7 @@ In v23.2, use the following style:
 
 [Return to the table of contents.](#thetableofcontents)
 
-## Restoring Changes Made after our v24.1 Release
+## Restoring Changes Made After Our v24.1 Release
 
 ### DxScheduler
 
@@ -2929,7 +2929,7 @@ In v23.2, use the following styles for Day and Week views:
 }
 ```
 
-In v24.1, the scroll bar automatically appears out of the box when the view area is larger than the specified component size. Use the following code for any kind of views:
+In v24.1, the scroll bar automatically appears out of the box when the view area is larger than the specified component size. Use the following code for any kind of view:
 
 ```cs
 <style>
@@ -3004,7 +3004,7 @@ In v22.2, use the following CSS rule:
 }
 ```
 
-In v24.1, use the `CellMinWidth` property to specify the cell minimum width in any kind of view.
+In v24.1, use the `CellMinWidth` property to specify the cell's minimum width in any kind of view.
 
 ```cs
 <DxSchedulerMonthView CellMinWidth="120"></DxSchedulerMonthView>
@@ -3111,7 +3111,7 @@ In v24.1, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Remove Buttons From the Appointment Tooltip
+#### Remove Buttons from the Appointment Tooltip
 
 In v21.2, use the following CSS rule to remove all buttons:
 
@@ -3139,7 +3139,7 @@ Modify the selector to hide a specific button. For example, the following rule h
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Remove Day Headers From a View
+#### Remove Day Headers from a View
 
 In v21.1, use the following code to remove dates from the Day view:
 
