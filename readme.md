@@ -19,7 +19,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
 <a name="thetableofcontents"></a>
 ## Table of Contents
 
-- [Restoring Changes Made after our v22.2 Release](#restoring-changes-made-after-our-v222-release)
+- [Restoring Changes Made After Our v22.2 Release](#restoring-changes-made-after-our-v222-release)
   - [DxGrid](#dxgrid)
     - [Align header captions](#align-header-captions)
     - [Color alternate rows](#color-alternate-rows)
@@ -74,7 +74,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Customize popup size and position](#customize-popup-size-and-position)
     - [Customize the Close header's button icon](#customize-the-close-headers-button-icon)
     - [Hide the modal background](#hide-the-modal-background)
-- [Restoring Changes Made after our v23.1 Release](#restoring-changes-made-after-our-v231-release)
+- [Restoring Changes Made After Our v23.1 Release](#restoring-changes-made-after-our-v231-release)
   - [Navigation TreeView customizations in projects created with DevExpress Templates](#navigation-treeview-customizations-in-projects-created-with-devexpress-templates)
   - [DxAccordion](#dxaccordion)
     - [Modify background color of a selected item](#modify-background-color-of-a-selected-item)
@@ -115,7 +115,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove left margin of child nodes](#remove-left-margin-of-child-nodes)
     - [Display Context Menu for a node](#display-context-menu-for-a-node)
     - [Place an icon above node text](#place-an-icon-above-node-text)
-- [Restoring Changes Made after our v23.2 Release](#restoring-changes-made-after-our-v232-release)
+- [Restoring Changes Made After Our v23.2 Release](#restoring-changes-made-after-our-v232-release)
   - [DxGrid](#dxgrid-2)
     - [Customize empty data area](#customize-empty-data-area)
   - [DxToolbar](#dxtoolbar-1)
@@ -1827,7 +1827,7 @@ In v22.2, use the following CSS rules:
 
 [Return to the table of contents.](#thetableofcontents)
 
-## Restoring Changes Made after our v23.1 Release
+## Restoring Changes Made After Our v23.1 Release
 
 ### Navigation TreeView Customizations in Projects Created with DevExpress Templates
 
@@ -2871,7 +2871,7 @@ In v23.1, use the following code:
 
 [Return to the table of contents.](#thetableofcontents)
 
-## Restoring Changes Made after our v23.2 Release
+## Restoring Changes Made After Our v23.2 Release
 
 ### DxGrid
 
