@@ -133,6 +133,15 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Remove Day Headers From a View](#remove-day-headers-from-a-view)
     - [Change Button Icons of the Appointment Edit Form](#change-button-icons-of-the-appointment-edit-form)
     - [Hide the Default Today Button](#hide-the-default-today-button)
+  - [DxChart](#dxchart)
+    - [Change the Chart Height](#change-the-chart-height)
+    - [Set the Title Color](#set-the-title-color)
+    - [Customize Legend Appearance](#customize-legend-appearance)
+    - [Align Legend Check Boxes Vertically](#align-legend-check-boxes-vertically)
+    - [Configure Legend Item Indents](#configure-legend-item-indents)
+    - [Change the Color of Legend Item Icons](#change-the-color-of-legend-item-icons)
+    - [Change the Tooltip Z-Index](#change-the-tooltip-z-index)
+    - [Set the Tooltip Background Color](#set-the-tooltip-background-color)
 
 ## Restoring Changes Made After Our v22.2 Release
 
@@ -3244,3 +3253,183 @@ In v24.1, use the following CSS rule:
 ```
 
 [Return to the table of contents.](#thetableofcontents)
+
+### DxChart
+
+#### Change the Chart Height
+
+In v23.2, use the following CSS rule:
+
+```css
+.my-chart .dx-chart {
+    min-height: 500px;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.my-chart .dxbl-chart {
+    min-height: 500px;
+}
+```
+
+Or specify the component's [Height](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxChartBase.Height) property:
+
+```razor
+<DxChart Data="@DataSource" Height="500px">
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Set the Title Color
+
+In v23.2, use the following CSS rule:
+
+```css
+.dx-chart-title {
+    color: red;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-title {
+    color: red;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Customize Legend Appearance
+
+In v21.1, use the following CSS rule:
+
+```css
+.chart-legend {
+    border: 1px solid black;
+    font-size: 9px;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-legend {
+    border: 1px solid black;
+    font-size: 9px;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Align Legend Check Boxes Vertically
+
+In v21.2, use the following CSS rule:
+
+```css
+.dx-chart-legend-item .dxbs-checkbox-label {
+    width: 100px;
+    text-align: left;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-legend-item .dxbl-checkbox .dxbl-text {
+    width: 100px;
+    text-align: left;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Configure Legend Item Indents
+
+In v21.1, use the following CSS rule:
+
+```css
+.chart-legend .dx-chart-legend-items a {
+    padding: 2px !important;
+    margin: 0px !important;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-legend .dxbl-chart-legend-items {
+    padding: 2px !important;
+    margin: 0px !important;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change the Color of Legend Item Icons
+
+In v22.1, use the following CSS rule:
+
+```css
+.dx-chart-legend-icon .dx-chart-def-icon {
+    background-color:transparent;
+    color: rgb(66,167,69);
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-legend-icon .dxbl-chart-legend-def-icon {
+    background-color:transparent;
+    color: rgb(66,167,69);
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Change the Tooltip Z-Index
+
+In v23.2, use the following CSS rule:
+
+```css
+.dx-chart-tooltip {
+    z-index: 1000;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-chart-tooltip {
+    z-index: 1000;
+}
+```
+
+[Return to the table of contents.](#thetableofcontents)
+
+#### Set the Tooltip Background Color
+
+In v23.1, use the following CSS rules:
+
+```css
+.dx-chart-tooltip {
+  background-color: [color] !important
+}
+.dx-tooltip-pointer {
+    background-color: [color] !important
+}
+```
+
+In v24.1, use the following CSS rules:
+
+```css
+.dxbl-chart-tooltip {
+  background-color: [color] !important
+}
+.dxbl-tooltip-pointer {
+    background-color: [color] !important
+}
+```
