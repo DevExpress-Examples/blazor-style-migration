@@ -3274,7 +3274,7 @@ In v24.1, use the following CSS rule:
 }
 ```
 
-Or specify the component's [Height](https://docs.devexpress.com/Blazor/DevExpress.Blazor.Base.GaugeBase.RedrawOnResize) property:
+Or specify the component's [Height](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxChartBase.Height) property:
 
 ```razor
 <DxChart Data="@DataSource" Height="500px">
