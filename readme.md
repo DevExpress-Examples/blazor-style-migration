@@ -3429,6 +3429,8 @@ In v24.1, use the following CSS rules:
 .dxbl-chart-tooltip {
   background-color: [color] !important
 }
+
+[Return to the table of contents.](#thetableofcontents)
 .dxbl-tooltip-pointer {
     background-color: [color] !important
 }
