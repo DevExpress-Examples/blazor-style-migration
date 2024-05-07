@@ -124,14 +124,14 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
   - [DxScheduler](#dxscheduler-1)
     - [Add a Scrollbar to a View](#add-a-scrollbar-to-a-view)
     - [Hide Default Interval Navigator](#hide-default-interval-navigator)
-    - [Change the Default Cell Height](#change-the-default-cell-height)
-    - [Change the Default Cell Width](#change-the-default-cell-width)
+    - [Change Default Cell Height](#change-the-default-cell-height)
+    - [Change Default Cell Width](#change-the-default-cell-width)
     - [Rotate Resource Headers in Timeline View](#rotate-resource-headers-in-timeline-view)
     - [Change Edit Form Width](#change-edit-form-width-1)
     - [Swap Buttons in the Reccuring Appointment Editing Popup](#swap-buttons-in-the-reccuring-appointment-editing-popup)
     - [Remove Buttons From the Appointment Tooltip](#remove-buttons-from-the-appointment-tooltip)
     - [Remove Day Headers From a View](#remove-day-headers-from-a-view)
-    - [Change Button Icons of the Appointment Edit Form](#change-button-icons-of-the-appointment-edit-form)
+    - [Change Button Icons within the Appointment Edit Form](#change-button-icons-of-the-appointment-edit-form)
     - [Hide the Default Today Button](#hide-the-default-today-button)
   - [DxChart](#dxchart)
     - [Change the Chart Height](#change-the-chart-height)
@@ -2938,7 +2938,7 @@ In v23.2, use the following styles for Day and Week views:
 }
 ```
 
-In v24.1, the scroll bar automatically appears out of the box when the view area is larger than the specified component size. Use the following code for any kind of view:
+In v24.1, a scroll bar appears automatically when the DevExpress Blazor Scheduler’s view area is larger than specified component size. Use the following code for any Scheduler View (Day, Week, WorkWeek, Month, and Timeline):
 
 ```cs
 <style>
@@ -2983,7 +2983,7 @@ In v24.1, use the following code:
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Change the Default Cell Height
+#### Change Default Cell Height
 
 In v23.1, use the following CSS rule:
 
@@ -3003,7 +3003,7 @@ In v24.1, use the following CSS rule:
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Change the Default Cell Width
+#### Change Default Cell Width
 
 In v22.2, use the following CSS rule:
 
@@ -3013,7 +3013,7 @@ In v22.2, use the following CSS rule:
 }
 ```
 
-In v24.1, use the `CellMinWidth` property to specify the cell's minimum width in any kind of view.
+In v24.1, use the CellMinWidth property to specify a cell's minimum width for any Scheduler View (Day, Week, WorkWeek, Month, and Timeline).
 
 ```cs
 <DxSchedulerMonthView CellMinWidth="120"></DxSchedulerMonthView>
@@ -3178,7 +3178,7 @@ In v24.1, use the following code:
 </DxScheduler ...>
 ```
 
-Modify the CSS selector to hide date cells in other cases. For example, the following rule completely removes date cells:
+Modify the CSS selector to hide date cells in other cases. For example, the following rule removes date cells:
 
 ```css
 td.dxbl-sc-date-hr.dxbl-sc-date-hr-today {
@@ -3188,7 +3188,7 @@ td.dxbl-sc-date-hr.dxbl-sc-date-hr-today {
 
 [Return to the table of contents.](#thetableofcontents)
 
-#### Change Button Icons of the Appointment Edit Form
+#### Change Button Icons within the Appointment Edit Form
 
 In v20.2, use the following CSS rules to change icons of **Discard** and **Save** buttons:
 
