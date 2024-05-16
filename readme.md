@@ -3451,7 +3451,7 @@ In v23.1, use the following code:
 
 ```razor
 <style>
-    .my-upload button{
+    .my-upload button {
         background-color: blue !important;
         color: white !important;
     }
@@ -3488,7 +3488,7 @@ In v20.2, use the following CSS rule:
 In v24.1, use the following CSS rule:
 
 ```css
-.my-upload .dxbl-upload-file-view-size{
+.my-upload .dxbl-upload-file-view-size {
     color: white!important;
 }
 ```
@@ -3509,6 +3509,7 @@ In v24.1, use the following CSS rule to hide the progress bar:
 .dxbl-upload-file-list-view .dxbl-progress-bar {
     display: none;
 }
+```
 
 You can add the following CSS rule to hide the progress value displayed above the progress bar in v24.1:
 
@@ -3525,7 +3526,7 @@ In v22.2, you can hide all upload buttons in one of the following ways:
 * Use the following CSS rule:
 
     ```css
-    .dxuc-file-list-view .dxuc-file-view .row div:nth-child(2){
+    .dxuc-file-list-view .dxuc-file-view .row div:nth-child(2) {
         display: none;
     }
     .dxuc-button-container.row.align-items-end table.dxuc-file-view .row div:nth-child(2) {
@@ -3550,7 +3551,7 @@ In v24.1, use the following code to hide upload buttons:
 ```razor
 <style>
     .my-upload .dxbl-upload-upload-btn {
-        display:none;
+        display: none;
     }
 </style>
 
@@ -3581,7 +3582,7 @@ In v21.1, use the following CSS rule:
 
 ```css
 .dxuc-cancel-icon {
-    display:none
+    display: none
 }
 ```
 
@@ -3589,7 +3590,7 @@ In v24.1, use the following CSS rule:
 
 ```css
 .dxbl-upload-cancel-btn {
-    display:none
+    display: none
 }
 ```
 
