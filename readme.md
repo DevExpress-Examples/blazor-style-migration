@@ -142,6 +142,14 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Change the Color of Legend Item Icons](#change-the-color-of-legend-item-icons)
     - [Change the Tooltip Z-Index](#change-the-tooltip-z-index)
     - [Set the Tooltip Background Color](#set-the-tooltip-background-color)
+  - [DxUpload](#dxupload)
+    - [Change Select Button Color](#change-select-button-color)
+    - [Change Color of File Size Labels](#change-color-of-file-size-labels)
+    - [Hide Progress Bars in File List](#hide-progress-bars-in-file-list)
+    - [Hide All Upload Buttons](#hide-all-upload-buttons)
+    - [Hide Upload Buttons in File List Only](#hide-upload-buttons-in-file-list-only)
+    - [Hide Remove and Cancel Buttons](#hide-remove-and-cancel-buttons)
+    - [Hide Remove Buttons for Uploaded Files](#hide-remove-buttons-for-uploaded-files)
 
 ## Restoring Changes Made After Our v22.2 Release
 
@@ -3432,6 +3440,174 @@ In v24.1, use the following CSS rules:
 
 .dxbl-tooltip-pointer {
     background-color: [color] !important
+}
+```
+
+### DxUpload
+
+#### Change Select Button Color
+
+In v23.1, use the following code:
+
+```razor
+<style>
+    .my-upload button{
+        background-color: blue !important;
+        color: white !important;
+    }
+</style>
+
+<DxUpload CssClass="my-upload" Name="ImageUpload" ... />
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-upload-select-btn {
+    background-color: blue !important;
+    color: white !important;
+}
+```
+
+#### Change Color of File Size Labels
+
+In v20.2 and v24.1, use the same razor code:
+
+```razor
+<DxUpload CssClass="my-upload" ... />
+```
+
+In v20.2, use the following CSS rule:
+
+```css
+.my-upload .dxuc-file-size {
+    color: white!important;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.my-upload .dxbl-upload-file-view-size{
+    color: white!important;
+}
+```
+
+#### Hide Progress Bars in File List
+
+In v23.1, use the following CSS rule:
+
+```css
+.dxuc-file-list-view .progress {
+    visibility: hidden;
+}
+```
+
+In v24.1, use the following CSS rule to hide the progress bar:
+
+```css
+.dxbl-upload-file-list-view .dxbl-progress-bar {
+    display: none;
+}
+
+You can add the following CSS rule to hide the progress value displayed above the progress bar in v24.1:
+
+```css
+.dxbl-upload-file-list-view .dxbl-upload-file-view-progress-bar-value {
+    display: none;
+}
+```
+
+#### Hide All Upload Buttons
+
+In v22.2, you can hide all upload buttons in one of the following ways:
+
+* Use the following CSS rule:
+
+    ```css
+    .dxuc-file-list-view .dxuc-file-view .row div:nth-child(2){
+        display: none;
+    }
+    .dxuc-button-container.row.align-items-end table.dxuc-file-view .row div:nth-child(2) {
+        display: none;
+    }
+    ```
+
+* Use the following code:
+
+    ```razor
+    <style>
+        .my-upload .dxuc-upload-icon {
+            display: none;
+        }
+    </style>
+
+    <DxUpload CssClass="my-upload" ... />
+    ```
+
+In v24.1, use the following code to hide upload buttons:
+
+```razor
+<style>
+    .my-upload .dxbl-upload-upload-btn {
+        display:none;
+    }
+</style>
+
+<DxUpload CssClass="my-upload" ... />
+```
+
+#### Hide Upload Buttons in File List Only
+
+In v21.1, use the following CSS rule:
+
+```css
+.dxuc-file-list-view .dxuc-file-view .row div:nth-child(2) {
+    display: none;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-upload-file-list-view .dxbl-upload-upload-btn {
+    display: none;
+}
+```
+
+#### Hide Remove and Cancel Buttons
+
+In v21.1, use the following CSS rule:
+
+```css
+.dxuc-cancel-icon {
+    display:none
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-upload-cancel-btn {
+    display:none
+}
+```
+
+#### Hide Remove Buttons for Uploaded Files
+
+In v23.1, use the following CSS rule:
+
+```css
+.dxuc-file-view td.ps-3.pe-3:has(.text-success) .dxuc-button-icon-container {
+    display: none;
+}
+```
+
+In v24.1, use the following CSS rule:
+
+```css
+.dxbl-upload-file-list-view .dxbl-upload-file-view:has(.dxbl-upload-file-view-success-load-state) .dxbl-upload-cancel-btn {
+    display: none;
 }
 ```
 
