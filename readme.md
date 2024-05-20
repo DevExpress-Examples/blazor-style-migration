@@ -144,7 +144,7 @@ Feel free to write to our [Support Center](http://devexpress.com/support/center)
     - [Set the Tooltip Background Color](#set-the-tooltip-background-color)
   - [DxUpload](#dxupload)
     - [Change Select Button Color](#change-select-button-color)
-    - [Change Color of Labels with File Sizes](#change-color-of-labels-with-file-sizes)
+    - [Change Color of File Size Labels](#change-color-of-file-size-labels)
     - [Hide Progress Bars in File List](#hide-progress-bars-in-file-list)
     - [Hide All Upload Buttons](#hide-all-upload-buttons)
     - [Hide Upload Buttons in File List Only](#hide-upload-buttons-in-file-list-only)
@@ -3469,7 +3469,7 @@ In v24.1, use the following CSS rule:
 }
 ```
 
-#### Change Color of Labels with File Sizes
+#### Change Color of File Size Labels
 
 In v20.2 and v24.1, use the same razor code:
 
