@@ -2836,6 +2836,14 @@ In v23.1, use the following CSS rules:
 }
 ```
 
+If the previously mentioned CSS rule is not sufficient, also define the following CSS rule:
+
+```css
+.dxbl-treeview-item-content {
+    --dxbl-treeview-item-indent: unset !important;
+}
+```
+
 #### Display Context Menu for a Node
 
 In v21.2, use the following CSS rules to display a Context Menu above the `NodeTextTemplate`:
