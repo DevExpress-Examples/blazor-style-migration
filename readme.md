@@ -1221,24 +1221,7 @@ In v22.1, use the following CSS rules:
 </div>
 ```
 
-In v22.2, use the following CSS rules:
-
-```cs
-<style>
-    .glyphicon input {
-        padding-left: 3em;
-    }
-</style>
-
-<div style="position: relative;">
-    <DxTextBox CssClass="glyphicon" NullText="Type something here"></DxTextBox>
-    <div style="position: absolute; width: 100%; height: 100%; top: 0; pointer-events: none;">
-        <div style="position: static; height: 100%; width: calc(1em + 18px); padding-left: 1em;padding-top:0.2em;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16"> <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" /> </svg>
-        </div>
-    </div>
-</div>
-```
+In v22.2, use [Command Buttons](https://docs.devexpress.com/Blazor/404267/components/data-editors/command-buttons).
 
 [Return to the table of contents.](#thetableofcontents)
 
@@ -2088,7 +2071,7 @@ In v23.1, use the [ItemContainerCssClass](https://docs.devexpress.com/Blazor/Dev
     }
 </style>
 
-<DxGridLayout style="height:500px" ItemContainerCssClass="item-container">...</DxGridLayout>
+<DxGridLayout ItemContainerCssClass="item-container">...</DxGridLayout>
 ```
 
 ### DxMenu
