@@ -252,7 +252,6 @@
 | --dxds-color-surface-secondary-default-hovered | --dxds-color-bg-secondary-hovered |
 | --dxds-color-surface-secondary-default-active | --dxds-color-bg-secondary-active |
 | --dxds-color-surface-secondary-default-selected | --dxds-color-bg-secondary-selected |
-| --dxds-color-surface-secondary-subdued-rest | --dxds-color-bg-secondary-subtle |
 | --dxds-color-surface-secondary-default-disabled | --dxds-color-bg-disabled |
 
 ## Info
