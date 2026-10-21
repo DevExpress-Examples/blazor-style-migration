@@ -4,18 +4,30 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
-# DevExpress Blazor Components - How to Update CSS Styles
+# DevExpress Blazor Components — Update CSS Styles
 
 This document summarizes the most common scenarios in which you should use our private CSS selectors to apply a style to an element.
  
-You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.2 or prior, and copy the new equivalent of this selector.
+You can also press `Ctrl+F` to find and copy the new equivalent of a private CSS selector you used in v22.2 or earlier.
 
-If you do not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
+If this topic does not cover your scenario, inspect the rendered component and create a new CSS selector as described in the following articles:
 
 * [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
 * [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/ticket/details/T632424)
 
-Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
+If you need assistance with your specific case, contact our [Support Center](http://devexpress.com/support/center).
+
+## v26.2 Update — Public CSS Variables
+In v26.2, we revised public `--dxds-*` CSS variables exposed by DevExpress Blazor Fluent themes as follows:
+* Expanded [theme palette scales](https://docs.devexpress.com/DesignSystem/405686/colors/theme-palettes) and updated associated [CSS variable values](https://docs.devexpress.com/DesignSystem/405638/colors/theme-palettes/fluent-theme-palettes).
+* Expanded [utility palette scales](https://docs.devexpress.com/DesignSystem/405687/colors/utility-palettes) from 12 to 18 shades, renamed associated [base CSS variables](https://docs.devexpress.com/DesignSystem/405639/colors/utility-palettes/fluent-utility-palette), and updated their values.
+* Renamed and rearranged [semantic CSS variables](https://docs.devexpress.com/DesignSystem/405706/colors/color-css-variables) by purpose.
+
+The [public-css-variable-migration](./public-css-variable-migration.md) file lists all affected CSS definitions and corresponding replacements in v26.2+.
+
+If your project uses affected `--dxds-*` CSS variables, corresponding styles will no longer be applied. We recommend using the [DevExpress Project Converter](https://docs.devexpress.com/GeneralInformation/2529/updates/project-converter) to update all affected CSS variables automatically.
+
+For additional information, refer to the corresponding breaking change announcement: [Blazor Fluent Themes — Public CSS variables have been revised](https://supportcenter.devexpress.com/ticket/details/t1335018/blazor-fluent-themes-public-css-variables-have-been-revised).
 
 <a name="thetableofcontents"></a>
 ## Table of Contents
