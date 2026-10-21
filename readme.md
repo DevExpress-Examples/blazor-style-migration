@@ -8,14 +8,14 @@
 
 This document summarizes the most common scenarios in which you should use our private CSS selectors to apply a style to an element.
  
-You can also press `Ctrl+F` and search for a private CSS selector that you used in a previous version. This helps you find a selector used in v22.2 or prior, and copy the new equivalent of this selector.
+You can also press `Ctrl+F` to find and copy the new equivalent of a private CSS selector you used in v22.2 or earlier.
 
-If you do not manage to find your scenario in this topic, you can inspect a component render and create a new CSS selector as described in the following articles: 
+If this topic does not cover your scenario, inspect the rendered component and create a new CSS selector as described in the following articles:
 
 * [View and Change CSS](https://developer.chrome.com/docs/devtools/css/)<br/>
 * [How to Implement CSS-related Solutions for DevExpress Components](https://supportcenter.devexpress.com/ticket/details/T632424)
 
-Feel free to write to our [Support Center](http://devexpress.com/support/center). We are ready to research your specific case.
+If you need assistance with your specific case, contact our [Support Center](http://devexpress.com/support/center).
 
 ## v26.2 Update — Public CSS Variables
 In v26.2, we revised public `--dxds-*` CSS variables exposed by DevExpress Blazor Fluent themes as follows:
