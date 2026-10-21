@@ -25,7 +25,7 @@ In v26.2, we revised public `--dxds-*` CSS variables exposed by DevExpress Blazo
 
 The [public-css-variable-migration](./public-css-variable-migration.md) file lists all affected CSS definitions and corresponding replacements in v26.2+.
 
-If your project uses public `--dxds-*` CSS variables, corresponding styles will no longer be applied. We recommend using the [DevExpress Project Converter](https://docs.devexpress.com/GeneralInformation/2529/updates/project-converter) to update all affected CSS variables automatically.
+If your project uses affected `--dxds-*` CSS variables, corresponding styles will no longer be applied. We recommend using the [DevExpress Project Converter](https://docs.devexpress.com/GeneralInformation/2529/updates/project-converter) to update all affected CSS variables automatically.
 
 For additional information, refer to the corresponding breaking change announcement: [Blazor Fluent Themes — Public CSS variables have been revised](https://supportcenter.devexpress.com/ticket/details/t1335018/blazor-fluent-themes-public-css-variables-have-been-revised).
 
